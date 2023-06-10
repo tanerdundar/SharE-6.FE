@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,7 +10,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState } from "react";
 
 function Copyright(props) {
   return (
@@ -60,7 +57,13 @@ export default function SignUp(props) {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar
+            sx={{ m: 1, bgcolor: "secondary.main" }}
+            style={{
+              backgroundColor: "rgba(255, 170, 12, 0.594)",
+              color: "black",
+            }}
+          >
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -81,7 +84,17 @@ export default function SignUp(props) {
                   fullWidth
                   id="firstName"
                   label="Username"
-                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}></Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email"
+                  name="email"
+                  autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -95,24 +108,15 @@ export default function SignUp(props) {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Repeat Email Address"
-                  name="email"
-                  autoComplete="email"
+                  name="password"
+                  label="Re-enter password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
                 />
               </Grid>
               <Grid item xs={12}></Grid>
@@ -127,7 +131,7 @@ export default function SignUp(props) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2" onClick={situChanger}>
+                <Link href="login" variant="body2" onClick={situChanger}>
                   Already have an account? Sign in
                 </Link>
               </Grid>

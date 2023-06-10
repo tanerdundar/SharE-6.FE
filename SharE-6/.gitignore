@@ -12,13 +12,6 @@ dist
 dist-ssr
 *.local
 
- src/component/Background.jsx
- src/component/ButtonAppBar.jsx
- src/component/Forum.jsx
- src/component/Home.jsx
- src/component/Login.jsx
- src/component/SignInSide.jsx
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
