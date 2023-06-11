@@ -1,8 +1,127 @@
-.home {
+.cards {
   display: flex;
   height: 80vh;
 }
 .card {
   width: 100%;
   height: 80vh;
+}
+.profile,
+.number,
+.mini-profile-inside,
+.description,
+.mp-photo,
+.mp-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.photo,
+.name,
+.numbers,
+.mini-profile {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.photo {
+  height: 35vh;
+}
+.photo-inside {
+  height: 16vh;
+  width: 35%;
+  border-radius: 50%;
+  font-size: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name {
+  height: 8vh;
+  flex-direction: column;
+}
+.numbers {
+  height: 12vh;
+}
+.number-inside {
+  width: 30%;
+}
+.mini-profile {
+  height: 25vh;
+}
+.mini-profile-inside {
+  flex-direction: row;
+  height: 15vh;
+  width: 60%;
+}
+.mp-photo {
+  height: 10vh;
+  width: 35%;
+  border: 2px solid rgba(255, 170, 12, 0.594);
+  border-radius: 50%;
+  justify-content: center;
+  font-size: 6vh;
+}
+.mp-name {
+  height: 10vh;
+  width: 65%;
+  justify-content: center;
+  margin-left: 5%;
+}
+.space {
+  height: 10vh;
+  width: 100%;
+  background-color: rgba(255, 170, 12, 0.594);
+  margin-bottom: 2vh;
+}
+
+.meow-user,
+.meow-content,
+.meow-others {
+  height: 4vh;
+  margin: 2vh 0;
+  width: 100%;
+}
+.meow-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.meow-content {
+  height: 10vh;
+  margin: 0;
+}
+.meow-others {
+  display: flex;
+  padding-left: 12%;
+  justify-content: space-between;
+}
+.meow-user-photo {
+  width: 15%;
+  height: 10vh;
+  margin: 0 3%;
+  margin-top: 2vh;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vh;
+}
+.meow-right {
+  width: 79%;
+}
+.date {
+  height: 4vh;
+  width: 40%;
+  border: 2px solid aqua;
+  margin-right: 18%;
+}
+.like {
+  display: flex;
+  width: 15%;
+  justify-content: space-between;
+}
+.like-number {
+  font-size: 3vh;
 }

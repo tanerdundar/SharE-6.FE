@@ -6,19 +6,33 @@ import SignUp from "./components/SignUp";
 import Home from "./components/Home";
 
 function App() {
+  const temporaryUser = {
+    username: "squirtle",
+    firstName: "Taner",
+    email: "asd@kmail.com",
+    password: "123456",
+    meows: "12",
+    followings: "273",
+    followers: "2345",
+  };
   const [count, setCount] = useState(0);
-  const [situation, setSituation] = useState(true);
-  const situChanger = () => {
-    setSituation(!situation);
+  const [isSigned, setIsSigned] = useState(true);
+  const [isLogged, setIsLogged] = useState(true);
+  const signChanger = () => {
+    setIsSigned(!isSigned);
+  };
+  const logChanger = () => {
+    setIsLogged(!isLogged);
   };
 
   return (
     <Router>
-      <Home />
-      {situation ? (
-        <SignIn changer={situChanger} situ={situation} />
+      {isLogged ? (
+        <Home user={temporaryUser} changer={logChanger} isLogged={isLogged} />
+      ) : isSigned ? (
+        <SignIn changer={signChanger} isSigned={isSigned} />
       ) : (
-        <SignUp changer={situChanger} situ={situation} />
+        <SignUp changer={signChanger} isSigned={isSigned} />
       )}
     </Router>
   );

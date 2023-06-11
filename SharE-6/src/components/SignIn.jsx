@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -23,7 +24,7 @@ function Copyright(props) {
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{" "}
+      </Link>
       {new Date().getFullYear()}
     </Typography>
   );
@@ -34,6 +35,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn(props) {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -42,9 +44,9 @@ export default function SignIn(props) {
       password: data.get("password"),
     });
   };
-  const [situ, setSitu] = useState(false);
-  const situChanger = () => {
-    props.changer(props.situ);
+  const signChanger = () => {
+    navigate("signup");
+    props.changer(props.isSigned);
   };
 
   return (
@@ -117,7 +119,11 @@ export default function SignIn(props) {
                 ---FORGET PASSWORD------FORGET PASSWORD------FORGET PASSWORD------FORGET PASSWORD--- */}
               </Grid>
               <Grid item>
-                <Link href="#" onClick={situChanger} variant="body2">
+                <Link
+                  style={{ cursor: "pointer" }}
+                  onClick={signChanger}
+                  variant="body2"
+                >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

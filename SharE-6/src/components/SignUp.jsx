@@ -10,6 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -22,9 +23,8 @@ function Copyright(props) {
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{" "}
+      </Link>
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
@@ -34,6 +34,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp(props) {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -42,8 +43,9 @@ export default function SignUp(props) {
       password: data.get("password"),
     });
   };
-  const situChanger = () => {
-    props.changer(props.situ);
+  const signChanger = () => {
+    navigate("login");
+    props.changer(props.isSigned);
   };
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -131,7 +133,11 @@ export default function SignUp(props) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="login" variant="body2" onClick={situChanger}>
+                <Link
+                  style={{ cursor: "pointer" }}
+                  variant="body2"
+                  onClick={signChanger}
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>
