@@ -25,7 +25,7 @@ export default function NavBar(props) {
     navigate("home");
   };
   const goProfile = () => {
-    navigate(props.user.name);
+    navigate(`${props.user.username}`);
   };
 
   return (

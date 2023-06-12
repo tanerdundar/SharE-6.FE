@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Profile from "./Profile";
 import Numbers from "./Numbers";
+import MiniProfile from "./MiniProfile";
 
 const bull = (
   <Box
@@ -18,35 +19,26 @@ const bull = (
 );
 
 export default function ProfileCard(props) {
+  let colors = [
+    "#00FFFF",
+    "#808080",
+    "#000080",
+    "#C0C0C0",
+    "#008080",
+    "#808000",
+    "#008000",
+    "#0000FF",
+    "#00FF00",
+    "#800080",
+    "#FF00FF",
+    "#800000",
+    "#FF0000",
+    "#FFFF00",
+  ];
   const colorPicker = () => {
     let color = "#";
-    for (let i = 0; i < 6; i++) {
-      let p = Math.floor(Math.random() * 16);
-      if (p < 10) {
-        color += p;
-      } else {
-        switch (p) {
-          case 10:
-            color += "a";
-            break;
-          case 11:
-            color += "b";
-            break;
-          case 12:
-            color += "c";
-            break;
-          case 13:
-            color += "d";
-            break;
-          case 14:
-            color += "e";
-            break;
-          case 15:
-            color += "f";
-            break;
-        }
-      }
-    }
+    let p = Math.floor(Math.random() * 14);
+    color = colors[p];
     return color;
   };
   const bgcolor = colorPicker();
@@ -70,15 +62,7 @@ export default function ProfileCard(props) {
           <Numbers number={props.user.followings} text={"Followings"} />
           <Numbers number={props.user.followers} text={"Followers"} />
         </div>
-        <div className="mini-profile">
-          <div className="mini-profile-inside">
-            <div className="mp-photo">{props.user.firstName[0]}</div>
-            <div className="mp-name">
-              <div className="real-name">{props.user.firstName}</div>
-              <div className="nickname"> {"@" + `${props.user.username}`}</div>
-            </div>
-          </div>
-        </div>
+        <MiniProfile user={props.user} />
       </div>
     </Card>
   );

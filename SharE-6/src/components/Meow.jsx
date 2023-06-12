@@ -1,16 +1,48 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import SentimentVerySatisfiedTwoToneIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
 
 const Meow = (props) => {
+  const colorPicker = () => {
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      let p = Math.floor(Math.random() * 16);
+      if (p < 10) {
+        color += p;
+      } else {
+        switch (p) {
+          case 10:
+            color += "a";
+            break;
+          case 11:
+            color += "b";
+            break;
+          case 12:
+            color += "c";
+            break;
+          case 13:
+            color += "d";
+            break;
+          case 14:
+            color += "e";
+            break;
+          case 15:
+            color += "f";
+            break;
+        }
+      }
+    }
+    return color;
+  };
   return (
     <Card style={{ height: "26vh", display: "flex", flexDirection: "row" }}>
-      <div className="meow-user-photo">{props.user.firstName[0]}</div>
+      <div
+        className="meow-user-photo"
+        style={{ backgroundColor: colorPicker() }}
+      >
+        {props.user.firstName[0]}
+      </div>
       <div className="meow-right">
         <div className="meow-user">
           {props.user.firstName}
@@ -27,7 +59,7 @@ const Meow = (props) => {
               <SentimentVerySatisfiedIcon />
             </div>
           </div>
-          <div className="date"></div>
+          <div className="date">Meow Date</div>
         </div>
       </div>
     </Card>
