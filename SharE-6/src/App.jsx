@@ -17,7 +17,7 @@ function App() {
   };
   const [count, setCount] = useState(0);
   const [isSigned, setIsSigned] = useState(true);
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const signChanger = () => {
     setIsSigned(!isSigned);
   };
@@ -30,7 +30,7 @@ function App() {
       {isLogged ? (
         <Home user={temporaryUser} changer={logChanger} isLogged={isLogged} />
       ) : isSigned ? (
-        <SignIn changer={signChanger} isSigned={isSigned} />
+        <SignIn changer={signChanger} isSigned={isSigned} logged={logChanger} />
       ) : (
         <SignUp changer={signChanger} isSigned={isSigned} />
       )}

@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -35,18 +36,40 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [wrong, setWrong] = useState(false);
+
+  const passwordChange = (e) => {
+    setPassword(e.target.value);
+    setWrong(false);
+  };
+  const usernameChange = (e) => {
+    setUsername(e.target.value);
+    setWrong(false);
+  };
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
   const signChanger = () => {
     navigate("signup");
     props.changer(props.isSigned);
+  };
+
+  const tryToLogIn = async () => {
+    const user = { username, password };
+    const response = await axios.post(
+      "http://localhost:8080/api/users/login",
+      user
+    );
+    if (response.data) {
+      navigate("home");
+      props.logged(true);
+    } else {
+      setWrong(true);
+    }
   };
 
   return (
@@ -86,7 +109,32 @@ export default function SignIn(props) {
               id="email"
               label="Username"
               name="email"
+              onChange={usernameChange}
             />
+            {!wrong ? (
+              <div
+                style={{
+                  height: "1vh",
+                  color: "red",
+                  display: "flex",
+                  alignContent: "center",
+                  flexWrap: "wrap",
+                }}
+              ></div>
+            ) : (
+              <div
+                className="message"
+                style={{
+                  height: "1vh",
+                  color: "red",
+                  display: "flex",
+                  alignContent: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                "Wrong password or username!..."
+              </div>
+            )}
             <TextField
               margin="normal"
               required
@@ -95,6 +143,7 @@ export default function SignIn(props) {
               label="Password"
               type="password"
               id="password"
+              onChange={passwordChange}
             />
             {/* ---REMEMBER  ME------REMEMBER  ME------REMEMBER  ME------REMEMBER  ME------REMEMBER  ME---
             <FormControlLabel
@@ -107,6 +156,7 @@ export default function SignIn(props) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={tryToLogIn}
             >
               Sign In
             </Button>
