@@ -5,43 +5,24 @@ import SentimentVerySatisfiedTwoToneIcon from "@mui/icons-material/SentimentVery
 
 const Meow = (props) => {
   const colorPicker = () => {
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      let p = Math.floor(Math.random() * 16);
-      if (p < 10) {
-        color += p;
-      } else {
-        switch (p) {
-          case 10:
-            color += "a";
-            break;
-          case 11:
-            color += "b";
-            break;
-          case 12:
-            color += "c";
-            break;
-          case 13:
-            color += "d";
-            break;
-          case 14:
-            color += "e";
-            break;
-          case 15:
-            color += "f";
-            break;
-        }
-      }
-    }
+    let color = props.user.backgroundColor;
     return color;
   };
   return (
-    <Card style={{ height: "26vh", display: "flex", flexDirection: "row" }}>
+    <Card
+      style={{
+        borderBottom: "1px solid black",
+        borderRadius: "0",
+        height: "26vh",
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
       <div
         className="meow-user-photo"
         style={{ backgroundColor: colorPicker() }}
       >
-        {props.user.firstName[0]}
+        {props.user.username[0].toUpperCase()}
       </div>
       <div className="meow-right">
         <div className="meow-user">
@@ -57,6 +38,7 @@ const Meow = (props) => {
             <div className="like-number">55</div>
             <div className="icon">
               <SentimentVerySatisfiedIcon />
+              {/* <SentimentVerySatisfiedTwoToneIcon /> */}
             </div>
           </div>
           <div className="date">Meow Date</div>

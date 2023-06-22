@@ -39,7 +39,9 @@ export default function SignIn(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [wrong, setWrong] = useState(false);
-
+  const [id, setId] = useState("");
+  const [errorMessage, setErrorMessage] = useState();
+  const navigate = useNavigate();
   const passwordChange = (e) => {
     setPassword(e.target.value);
     setWrong(false);
@@ -48,7 +50,6 @@ export default function SignIn(props) {
     setUsername(e.target.value);
     setWrong(false);
   };
-  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -57,19 +58,24 @@ export default function SignIn(props) {
     navigate("signup");
     props.changer(props.isSigned);
   };
-
+  const logIner = () => {
+    setWrong(false);
+    tryToLogIn();
+  };
   const tryToLogIn = async () => {
     const user = { username, password };
-    const response = await axios.post(
-      "http://localhost:8080/api/users/login",
-      user
-    );
-    if (response.data) {
-      navigate("home");
-      props.logged(true);
-    } else {
-      setWrong(true);
-    }
+
+    const response = await axios
+      .post("http://localhost:8080/api/users/login", user)
+      .then((response) => {
+        navigate("home");
+        props.logged(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setErrorMessage(error.data);
+        setWrong(true);
+      });
   };
 
   return (
@@ -132,7 +138,7 @@ export default function SignIn(props) {
                   flexWrap: "wrap",
                 }}
               >
-                "Wrong password or username!..."
+                {errorMessage}
               </div>
             )}
             <TextField
@@ -156,7 +162,7 @@ export default function SignIn(props) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={tryToLogIn}
+              onClick={logIner}
             >
               Sign In
             </Button>

@@ -7,9 +7,6 @@ import SearchCard from "./SearchCard";
 function Home(props) {
   useNavigate("home");
 
-  // const linkChanger = () => {};
-  // linkChanger();
-
   return (
     <div className="home">
       <div className="space"></div>

@@ -48,13 +48,13 @@ export default function ProfileCard(props) {
         <div className="photo">
           <div
             className="photo-inside"
-            style={{ backgroundColor: `${bgcolor}` }}
+            style={{ backgroundColor: `${props.user.backgroundColor}` }}
           >
-            {props.user.firstName[0]}
+            {props.user.username[0].toUpperCase()}
           </div>
         </div>
         <div className="name">
-          <div className="real-name">{props.user.firstName}</div>
+          <div className="real-name">{props.user.username}</div>
           <div className="nickname"> {"@" + `${props.user.username}`}</div>
         </div>
         <div className="numbers">
