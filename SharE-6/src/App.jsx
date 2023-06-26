@@ -63,10 +63,8 @@ function App() {
 
   return (
     <Router>
-      {isLogged ? (
-        <Home user={realUser} changer={logChanger} isLogged={isLogged} />
-      ) : isSigned ? (
-        <SignIn changer={signChanger} isSigned={isSigned} logged={logChanger} />
+      {isSigned ? (
+        <SignIn changer={signChanger} isSigned={isSigned} />
       ) : (
         <SignUp changer={signChanger} isSigned={isSigned} />
       )}

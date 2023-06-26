@@ -13,35 +13,10 @@ const bull = (
   <Box
     component="span"
     sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
+  ></Box>
 );
 
 export default function ProfileCard(props) {
-  let colors = [
-    "#00FFFF",
-    "#808080",
-    "#000080",
-    "#C0C0C0",
-    "#008080",
-    "#808000",
-    "#008000",
-    "#0000FF",
-    "#00FF00",
-    "#800080",
-    "#FF00FF",
-    "#800000",
-    "#FF0000",
-    "#FFFF00",
-  ];
-  const colorPicker = () => {
-    let color = "#";
-    let p = Math.floor(Math.random() * 14);
-    color = colors[p];
-    return color;
-  };
-  const bgcolor = colorPicker();
   return (
     <Card sx={{ minWidth: 275 }} style={{ height: "80vh" }}>
       <div className="profile">

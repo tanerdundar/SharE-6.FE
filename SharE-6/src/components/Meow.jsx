@@ -4,8 +4,16 @@ import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfi
 import SentimentVerySatisfiedTwoToneIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
 
 const Meow = (props) => {
+  console.log(props.meow.meowDate);
+  const date = new Date(props.meow.meowDate);
+  const year = date.getFullYear();
+  const month = date.toLocaleString("default", { month: "2-digit" });
+  const day = date.toLocaleString("default", { day: "2-digit" });
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
   const colorPicker = () => {
-    let color = props.user.backgroundColor;
+    let color = props.meow.owner.backgroundColor;
     return color;
   };
   return (
@@ -29,10 +37,7 @@ const Meow = (props) => {
           {props.user.firstName}
           {" " + "@" + props.user.username}
         </div>
-        <div className="meow-content">
-          I hope that even my worst critics remain on Twitter, because that is
-          what free speech means
-        </div>
+        <div className="meow-content">{props.meow.content}</div>
         <div className="meow-others">
           <div className="like">
             <div className="like-number">55</div>
@@ -41,7 +46,9 @@ const Meow = (props) => {
               {/* <SentimentVerySatisfiedTwoToneIcon /> */}
             </div>
           </div>
-          <div className="date">Meow Date</div>
+          <div className="date">
+            {hour + ":" + minute + " " + day + "-" + month + "-" + year}
+          </div>
         </div>
       </div>
     </Card>

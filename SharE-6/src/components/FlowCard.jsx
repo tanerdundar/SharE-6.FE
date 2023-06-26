@@ -9,41 +9,15 @@ import NavBar from "./NavBar";
 import Meow from "./Meow";
 import MiniProfile from "./MiniProfile";
 import UserList from "./UserList";
+import axios from "axios";
+import { useState } from "react";
 
 export default function FlowCard(props) {
-  const colorPicker = () => {
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      let p = Math.floor(Math.random() * 16);
-      if (p < 10) {
-        color += p;
-      } else {
-        switch (p) {
-          case 10:
-            color += "a";
-            break;
-          case 11:
-            color += "b";
-            break;
-          case 12:
-            color += "c";
-            break;
-          case 13:
-            color += "d";
-            break;
-          case 14:
-            color += "e";
-            break;
-          case 15:
-            color += "f";
-            break;
-        }
-      }
-    }
-    return color;
-  };
+  console.log(props.list);
+
   return (
-    // <Card
+    //
+    //<Card
     //   style={{
     //     marginTop: "5vh",
     //     height: "75vh",
@@ -62,16 +36,24 @@ export default function FlowCard(props) {
     //   <Meow user={props.user} />
     //   <Meow user={props.user} />
     // </Card>
-    <div
-      className="card-inside"
-      style={{ overflowX: "hidden", overflowY: "auto" }}
-    >
-      <Meow user={props.user} />
-      <Meow user={props.user} />
-      <Meow user={props.user} />
-      <Meow user={props.user} />
-      <Meow user={props.user} />
-      <UserList user={props.user} />
-    </div>
+    <>
+      {props.kind ? (
+        <div
+          className="card-inside"
+          style={{ overflowX: "hidden", overflowY: "auto" }}
+        >
+          {props.list.map((e) => {
+            return <Meow meow={e} user={e.owner} />;
+          })}
+        </div>
+      ) : (
+        <div
+          className="card-inside"
+          style={{ overflowX: "hidden", overflowY: "auto" }}
+        >
+          <Meow user={props.user} />
+        </div>
+      )}
+    </>
   );
 }

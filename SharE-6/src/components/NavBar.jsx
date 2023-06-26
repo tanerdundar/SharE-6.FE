@@ -27,7 +27,9 @@ export default function NavBar(props) {
   const goProfile = () => {
     navigate(`${props.user.username}`);
   };
-
+  const exiter = () => {
+    props.func(false);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -60,7 +62,7 @@ export default function NavBar(props) {
               onClick={logChanger}
               color="inherit"
             >
-              <ExitToAppIcon />
+              <ExitToAppIcon onClick={exiter} />
             </IconButton>
           </div>
         </Toolbar>
