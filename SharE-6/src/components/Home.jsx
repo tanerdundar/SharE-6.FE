@@ -6,6 +6,7 @@ import SearchCard from "./SearchCard";
 import NewMeow from "./NewMeow";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import FollowButton from "./FollowButton";
 
 function Home(props) {
   const [isMeows, setIsMeows] = useState(true);
@@ -52,7 +53,7 @@ function Home(props) {
           </div>
           <div className="right">
             <NewMeow owner={props.user} />
-            <SearchCard />
+            <SearchCard owner={props.user} />
           </div>
         </div>
       </div>

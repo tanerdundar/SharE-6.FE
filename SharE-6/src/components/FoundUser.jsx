@@ -1,3 +1,5 @@
+import { useState } from "react";
+import FollowButton from "./FollowButton";
 import MiniProfile from "./MiniProfile";
 import Numbers from "./Numbers";
 
@@ -21,6 +23,11 @@ function FoundUser(props) {
         <Numbers number={"5"} text={"Followings"} />
         <Numbers number={"5"} text={"Followers"} />
       </div>
+      {props.owner.userId == props.user.userId ? (
+        <></>
+      ) : (
+        <FollowButton isFollow={props.isFollow} />
+      )}
     </div>
   );
 }

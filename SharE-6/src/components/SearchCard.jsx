@@ -9,27 +9,44 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FoundUser from "./FoundUser";
 
-export default function SearchCard() {
+export default function SearchCard(props) {
   const [isSearched, setIsSearched] = useState(true);
   const [searchedUserName, setSearchedUserName] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
   const [user, setUser] = useState("");
-  const userSearch = () => {
-    const response = axios
-      .get("http://localhost:8080/api/users/check/" + searchedUserName)
-      .then((e) => {
-        const response = axios
-          .get("http://localhost:8080/api/users/search/" + searchedUserName)
-          .then((e) => {
-            setUser(e.data);
-            setIsSearched(!isSearched);
-          });
-      })
-      .catch((e) => {
-        setErrorMessage(e.response.data);
-        setError(true);
-      });
+  const [isFollowing, setIsFollowing] = useState(false);
+  const userSearch = async () => {
+    if (searchedUserName !== "") {
+      const response = await axios
+        .get("http://localhost:8080/api/users/check/" + searchedUserName)
+        .then(async (e) => {
+          const response = await axios
+            .get("http://localhost:8080/api/users/search/" + searchedUserName)
+            .then(async (e) => {
+              setUser(e.data);
+              setIsSearched(!isSearched);
+
+              const response = await axios
+                .get(
+                  "http://localhost:8080/api/follows/checkFollow/" +
+                    props.owner.userId +
+                    "/" +
+                    e.data.userId
+                )
+                .then((e) => {
+                  if (e.data) {
+                    setIsFollowing(true);
+                  }
+                });
+            });
+        })
+        .catch((e) => {
+          setErrorMessage(e.response.data);
+          setError(true);
+        });
+    } else {
+    }
   };
   const userRecorder = (e) => {
     setSearchedUserName(e.target.value);
@@ -61,7 +78,12 @@ export default function SearchCard() {
           </div>
         </div>
       ) : (
-        <FoundUser user={user} func={isSearchedSetter} />
+        <FoundUser
+          isFollow={isFollowing}
+          owner={props.owner}
+          user={user}
+          func={isSearchedSetter}
+        />
       )}
     </>
   );
