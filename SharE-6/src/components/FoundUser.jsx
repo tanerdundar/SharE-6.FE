@@ -2,8 +2,24 @@ import { useState } from "react";
 import FollowButton from "./FollowButton";
 import MiniProfile from "./MiniProfile";
 import Numbers from "./Numbers";
+import axios from "axios";
 
 function FoundUser(props) {
+  const [followingId, setFollowingId] = useState(props.user.userId);
+  const [follow, setFollow] = useState(props.isFollow ? true : false);
+  const followSetter = async () => {
+    const request = {
+      followerId: props.owner.userId,
+      followingId: props.user.userId,
+    };
+
+    const response = await axios
+      .post("http://localhost:8080/api/follows/" + props.owner.userId, request)
+      .then(() => {});
+
+    setFollow(!follow);
+  };
+
   const setter = () => {
     props.func(false);
   };
@@ -26,7 +42,11 @@ function FoundUser(props) {
       {props.owner.userId == props.user.userId ? (
         <></>
       ) : (
-        <FollowButton isFollow={props.isFollow} />
+        <div className="follow">
+          <button className="follow-button" onClick={followSetter}>
+            {follow ? "Following" : "Follow"}
+          </button>
+        </div>
       )}
     </div>
   );

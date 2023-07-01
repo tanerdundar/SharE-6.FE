@@ -16,30 +16,21 @@ export default function SearchCard(props) {
   const [error, setError] = useState(false);
   const [user, setUser] = useState("");
   const [isFollowing, setIsFollowing] = useState(false);
+
   const userSearch = async () => {
     if (searchedUserName !== "") {
       const response = await axios
-        .get("http://localhost:8080/api/users/check/" + searchedUserName)
+        .get(
+          "http://localhost:8080/api/users/check/" +
+            searchedUserName +
+            "/" +
+            props.owner.userId
+        )
         .then(async (e) => {
-          const response = await axios
-            .get("http://localhost:8080/api/users/search/" + searchedUserName)
-            .then(async (e) => {
-              setUser(e.data);
-              setIsSearched(!isSearched);
-
-              const response = await axios
-                .get(
-                  "http://localhost:8080/api/follows/checkFollow/" +
-                    props.owner.userId +
-                    "/" +
-                    e.data.userId
-                )
-                .then((e) => {
-                  if (e.data) {
-                    setIsFollowing(true);
-                  }
-                });
-            });
+          setUser(e.data);
+          console.log(e.data);
+          setIsFollowing(e.data.follow);
+          setIsSearched(!isSearched);
         })
         .catch((e) => {
           setErrorMessage(e.response.data);
@@ -55,6 +46,24 @@ export default function SearchCard(props) {
   const isSearchedSetter = () => {
     setIsSearched(!isSearched);
     setSearchedUserName("");
+  };
+  const followSetter = async (e) => {
+    const response = await axios
+      .get(
+        "http://localhost:8080/api/follows/checkFollow/" +
+          props.owner.userId +
+          "/" +
+          e.data.userId
+      )
+      .then((e) => {
+        if (e.data) {
+          setIsFollowing(true);
+          console.log(isFollowing);
+        } else {
+          setIsFollowing(false);
+          console.log(isFollowing);
+        }
+      });
   };
   return (
     <>
