@@ -13,6 +13,9 @@ function Home(props) {
   const [sth, setSth] = useState(true);
   useNavigate("home");
   const [list, setList] = useState("");
+  const [flowCardKey, setFlowCardKey] = useState(0);
+  const [cUser, setCUser] = useState("");
+  const [listBackUp, setListBackUp] = useState("");
 
   if (sth) {
     setSth(!sth);
@@ -20,40 +23,73 @@ function Home(props) {
       .get("http://localhost:8080/api/meows/home/" + props.user.userId)
       .then((e) => {
         setList(e.data);
+        setListBackUp(e.data);
       });
   }
-
+  const myMeows = axios.get(
+    "http://localhost:8080/api/meows/" + props.user.userId
+  ).data;
+  console.log(myMeows);
   const exiter = () => {
     props.func(false);
   };
-  useEffect(() => {
-    if (list !== "") {
-      return <FlowCard list={list} kind={isMeows} user={props.user} />;
-    }
-  }, [list]);
+
+  // useEffect(() => {
+  //   if (list !== "") {
+  //     setList(list);
+  //   }
+  // }, [list]);
+  const setHomeList = (x, y) => {
+    setList(x.data);
+    setIsMeows(y);
+    setFlowCardKey(flowCardKey + 1);
+  };
+  const setClickedUser = (e) => {
+    setCUser(e);
+  };
+  const listSetter = (e) => {
+    setList(e);
+    setFlowCardKey(flowCardKey + 1);
+    setIsMeows(true);
+  };
+  const profileMeows = () => {
+    setList(listBackUp);
+    setFlowCardKey(flowCardKey + 1);
+  };
   return (
     <div className="home">
       <div className="space"></div>
       <div className="cards">
-        <div className="card">
-          <ProfileCard user={props.user} />
+        <div className="card" style={{ marginTop: "5vh" }}>
+          <ProfileCard toUpest={setHomeList} user={props.user} />
         </div>
         <div className="card others">
           <div className="left">
             <NavBar
+              goHome={listSetter}
+              goProfile={profileMeows}
               func={exiter}
               user={props.user}
               changer={props.changer}
               isLogged={props.isLogged}
             />
-            {/* <FlowCard list={list} kind={isMeows} user={props.user} /> */}
             {list !== "" && (
-              <FlowCard list={list} kind={isMeows} user={props.user} />
+              <FlowCard
+                toUpest={setClickedUser}
+                key={flowCardKey}
+                list={list}
+                kind={isMeows}
+                user={props.user}
+              />
             )}
           </div>
           <div className="right">
             <NewMeow owner={props.user} />
-            <SearchCard owner={props.user} />
+            <SearchCard
+              toHighest={setHomeList}
+              owner={props.user}
+              searchdUser={cUser}
+            />
           </div>
         </div>
       </div>

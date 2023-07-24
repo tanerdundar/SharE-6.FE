@@ -10,40 +10,27 @@ import Meow from "./Meow";
 import MiniProfile from "./MiniProfile";
 import UserList from "./UserList";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import FlowUser from "./FlowUser";
 
 export default function FlowCard(props) {
-  console.log(props.list);
-
+  const [list, setList] = useState(props.list);
+  useEffect(() => {
+    setList(props.list);
+    console.log(props.list);
+  }, [list]);
+  const toUpper = (e) => {
+    props.toUpest(e);
+  };
   return (
-    //
-    //<Card
-    //   style={{
-    //     marginTop: "5vh",
-    //     height: "75vh",
-    //     display: "flex",
-    //     flexDirection: "column",
-    //   }}
-    // >
-    //   <CardContent>
-    //     <Meow user={props.user} />
-    //     <Meow user={props.user} />
-    //     <Meow user={props.user} />
-    //     <Meow user={props.user} />
-    //     <Meow user={props.user} />
-    //   </CardContent>
-    //   <Meow user={props.user} />
-    //   <Meow user={props.user} />
-    //   <Meow user={props.user} />
-    // </Card>
     <>
       {props.kind ? (
         <div
           className="card-inside"
-          style={{ overflowX: "hidden", overflowY: "auto" }}
+          style={{ overflowX: "hidden", overflowY: "auto", marginTop: "3vh" }}
         >
-          {props.list.map((e) => {
-            return <Meow meow={e} user={e.owner} />;
+          {list.map((e) => {
+            return <Meow logged={props.user} meow={e} />;
           })}
         </div>
       ) : (
@@ -51,7 +38,9 @@ export default function FlowCard(props) {
           className="card-inside"
           style={{ overflowX: "hidden", overflowY: "auto" }}
         >
-          <Meow user={props.user} />
+          {list.map((e) => {
+            return <FlowUser toUp={toUpper} user={e} />;
+          })}
         </div>
       )}
     </>

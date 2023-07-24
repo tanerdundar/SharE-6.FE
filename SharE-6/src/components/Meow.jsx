@@ -2,9 +2,13 @@ import React from "react";
 import Card from "@mui/material/Card";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import SentimentVerySatisfiedTwoToneIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
+import axios from "axios";
+import { useState } from "react";
+import { FaPaw } from "react-icons/fa";
 
 const Meow = (props) => {
-  console.log(props.meow.meowDate);
+  const [isLike, setIsLike] = useState(props.meow.liked);
+  const [likeNumber, setLikeNumber] = useState(props.meow.likedUsers.length);
   const date = new Date(props.meow.meowDate);
   const year = date.getFullYear();
   const month = date.toLocaleString("default", { month: "2-digit" });
@@ -12,38 +16,62 @@ const Meow = (props) => {
   const hour = date.getHours();
   const minute = date.getMinutes();
 
-  const colorPicker = () => {
-    let color = props.meow.owner.backgroundColor;
-    return color;
+  const liker = () => {
+    const response = !isLike
+      ? axios.post(
+          "http://localhost:8080/api/likes/" +
+            props.logged.userId +
+            "/" +
+            props.meow.meowId
+        )
+      : axios
+          .delete(
+            "http://localhost:8080/api/likes/" +
+              props.logged.userId +
+              "/" +
+              props.meow.meowId
+          )
+          .then((e) => {
+            setIsLike(!isLike);
+            !isLike
+              ? setLikeNumber(likeNumber + 1)
+              : setLikeNumber(likeNumber - 1);
+          });
   };
   return (
     <Card
       style={{
-        borderBottom: "1px solid black",
         borderRadius: "0",
-        height: "26vh",
+        minHeight: "14vh",
         display: "flex",
         flexDirection: "row",
+        backgroundColor: "whitesmoke",
+        marginTop: "1vh",
       }}
     >
       <div
         className="meow-user-photo"
-        style={{ backgroundColor: colorPicker() }}
+        style={{ backgroundColor: props.meow.owner.backgroundColor }}
       >
-        {props.user.username[0].toUpperCase()}
+        {props.meow.owner.username[0].toUpperCase()}
       </div>
       <div className="meow-right">
         <div className="meow-user">
-          {props.user.firstName}
-          {" " + "@" + props.user.username}
+          {props.meow.owner.name == null
+            ? props.meow.owner.username
+            : props.meow.owner.name}
+          {" " + "@" + props.meow.owner.username}
         </div>
         <div className="meow-content">{props.meow.content}</div>
         <div className="meow-others">
           <div className="like">
-            <div className="like-number">55</div>
-            <div className="icon">
-              <SentimentVerySatisfiedIcon />
-              {/* <SentimentVerySatisfiedTwoToneIcon /> */}
+            <div className="like-number">{likeNumber}</div>
+            <div className="icon" style={{ cursor: "pointer" }} onClick={liker}>
+              {isLike ? (
+                <FaPaw style={{ color: "red", marginTop: "7px" }} />
+              ) : (
+                <FaPaw style={{ color: "black", marginTop: "7px" }} />
+              )}
             </div>
           </div>
           <div className="date">

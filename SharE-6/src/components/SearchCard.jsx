@@ -10,11 +10,15 @@ import Typography from "@mui/material/Typography";
 import FoundUser from "./FoundUser";
 
 export default function SearchCard(props) {
-  const [isSearched, setIsSearched] = useState(true);
+  const [isSearched, setIsSearched] = useState(
+    props.searchedUser == undefined ? true : false
+  );
   const [searchedUserName, setSearchedUserName] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(
+    props.searchedUser == "" ? "" : props.searchedUser
+  );
   const [isFollowing, setIsFollowing] = useState(false);
 
   const userSearch = async () => {
@@ -28,7 +32,6 @@ export default function SearchCard(props) {
         )
         .then(async (e) => {
           setUser(e.data);
-          console.log(e.data);
           setIsFollowing(e.data.follow);
           setIsSearched(!isSearched);
         })
@@ -47,24 +50,10 @@ export default function SearchCard(props) {
     setIsSearched(!isSearched);
     setSearchedUserName("");
   };
-  const followSetter = async (e) => {
-    const response = await axios
-      .get(
-        "http://localhost:8080/api/follows/checkFollow/" +
-          props.owner.userId +
-          "/" +
-          e.data.userId
-      )
-      .then((e) => {
-        if (e.data) {
-          setIsFollowing(true);
-          console.log(isFollowing);
-        } else {
-          setIsFollowing(false);
-          console.log(isFollowing);
-        }
-      });
+  const toHighest = (x, y) => {
+    props.toHighest(x, y);
   };
+
   return (
     <>
       {isSearched ? (
@@ -88,6 +77,7 @@ export default function SearchCard(props) {
         </div>
       ) : (
         <FoundUser
+          toUpest={toHighest}
           isFollow={isFollowing}
           owner={props.owner}
           user={user}

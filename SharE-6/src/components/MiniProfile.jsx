@@ -7,7 +7,9 @@ function MiniProfile(props) {
           {props.user.username[0].toUpperCase()}
         </div>
         <div className="mp-name">
-          <div className="real-name">{props.user.username}</div>
+          <div className="real-name">
+            {props.user.name == null ? props.user.username : props.user.name}
+          </div>
           <div className="nickname"> {"@" + `${props.user.username}`}</div>
         </div>
       </div>

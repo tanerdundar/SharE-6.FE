@@ -4,13 +4,14 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  height: 88vh;
+  height: 95vh;
+  font-family: sans-serif;
 }
 .card,
 .card-inside,
 .search {
   width: 100%;
-  height: 67vh;
+  height: 85vh;
 }
 .search {
   width: 100%;
@@ -30,7 +31,8 @@
 .search,
 .right,
 .newmeow,
-.follow {
+.follow,
+.aaa {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,7 +91,6 @@
   margin-left: 5%;
 }
 .space {
-  height: 7vh;
   width: 100%;
   background-color: rgba(255, 170, 12, 0.594);
   margin-bottom: 2vh;
@@ -98,9 +99,7 @@
 .meow-user,
 .meow-content,
 .meow-others {
-  height: 4vh;
-  margin: 2vh 0;
-  width: 100%;
+  margin: 1vh 0;
 }
 .meow-user,
 .others,
@@ -110,9 +109,12 @@
   flex-direction: row;
   align-items: center;
 }
-
+.others {
+  height: 84vh;
+}
 .meow-content {
-  height: 10vh;
+  min-height: 3vh;
+  /* height: 10vh; */
   margin: 0;
 }
 .meow-others {
@@ -138,7 +140,8 @@
 .date {
   height: 4vh;
   width: 40%;
-  border: 2px solid aqua;
+  border: 2px dotted tomato;
+  border-radius: 25px;
   margin-right: 18%;
   display: flex;
   align-items: center;
@@ -281,4 +284,37 @@
   width: 50%;
   background-color: rgba(255, 170, 12, 0.594);
   font-size: 3vh;
+}
+.number {
+  font-family: "Times New Roman", Times, serif;
+}
+.number:hover {
+  text-decoration: underline;
+}
+.user-detail-left {
+  height: 14vh;
+  width: 100%;
+}
+.user-detail-right {
+  height: 14vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.top,
+.bot {
+  height: 5vh;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.t {
+  margin-top: 1vh;
+}
+.usrname {
+  display: flex;
+}
+.toleft {
+  margin-left: 2%;
 }
