@@ -1,14 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Profile from "./Profile";
 import Numbers from "./Numbers";
 import MiniProfile from "./MiniProfile";
 import { useState } from "react";
+import { FaPen } from "react-icons/fa";
+import axios from "axios";
 
 const bull = (
   <Box
@@ -19,6 +16,10 @@ const bull = (
 
 export default function ProfileCard(props) {
   const [meowNumber, setMeowNumber] = useState(props.user.numberOfMeows);
+  const [name, setName] = useState(
+    props.user.name == null ? props.user.username : props.user.name
+  );
+  const [status, setStatus] = useState(true);
   const [followerNumber, setFollowerNumber] = useState(
     props.user.numberOfFollowers
   );
@@ -27,6 +28,24 @@ export default function ProfileCard(props) {
   );
   const toUpper = (x, y) => {
     props.toUpest(x, y);
+  };
+  const editName = () => {
+    setStatus(false);
+  };
+  const input = { name };
+  const saveName = () => {
+    setStatus(true);
+    const response = axios.put(
+      "http://localhost:8080/api/users/" + props.user.userId,
+      input
+    );
+    console.log(props.user.userId);
+  };
+  const setStatusToTrue = () => {
+    setStatus(true);
+  };
+  const changeName = (e) => {
+    setName(e.target.value);
   };
   return (
     <Card
@@ -48,7 +67,29 @@ export default function ProfileCard(props) {
         </div>
         <div className="name">
           <div className="real-name">
-            {props.user.name == null ? props.user.username : props.user.name}
+            <div className="outer">
+              {status ? (
+                name
+              ) : (
+                <div style={{ display: "flex" }}>
+                  <input onChange={changeName} placeholder={name} />
+                  <button onClick={saveName}>Save</button>
+                  <b
+                    style={{
+                      marginLeft: "5%",
+                      cursor: "pointer",
+                      fontStyle: "solid",
+                    }}
+                    onClick={setStatusToTrue}
+                  >
+                    X
+                  </b>
+                </div>
+              )}
+            </div>
+            <div className="edit">
+              <FaPen style={{ cursor: "pointer" }} onClick={editName} />
+            </div>
           </div>
           <div className="nickname"> {"@" + `${props.user.username}`}</div>
         </div>

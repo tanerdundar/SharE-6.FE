@@ -318,3 +318,9 @@
 .toleft {
   margin-left: 2%;
 }
+.real-name {
+  display: flex;
+}
+.edit {
+  margin-left: 25%;
+}

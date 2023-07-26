@@ -3,8 +3,6 @@ import axios from "axios";
 
 function Numbers(props) {
   var annex = props.text.toLowerCase();
-  console.log(annex);
-  console.log(props.number);
 
   const findNeeds = async () => {
     const list = await axios.get(

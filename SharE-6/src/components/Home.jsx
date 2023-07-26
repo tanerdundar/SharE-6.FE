@@ -6,7 +6,6 @@ import SearchCard from "./SearchCard";
 import NewMeow from "./NewMeow";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import FollowButton from "./FollowButton";
 
 function Home(props) {
   const [isMeows, setIsMeows] = useState(true);
@@ -16,6 +15,7 @@ function Home(props) {
   const [flowCardKey, setFlowCardKey] = useState(0);
   const [cUser, setCUser] = useState("");
   const [listBackUp, setListBackUp] = useState("");
+  const [myMeows, setMyMeows] = useState("");
 
   if (sth) {
     setSth(!sth);
@@ -26,10 +26,7 @@ function Home(props) {
         setListBackUp(e.data);
       });
   }
-  const myMeows = axios.get(
-    "http://localhost:8080/api/meows/" + props.user.userId
-  ).data;
-  console.log(myMeows);
+
   const exiter = () => {
     props.func(false);
   };
@@ -52,9 +49,10 @@ function Home(props) {
     setFlowCardKey(flowCardKey + 1);
     setIsMeows(true);
   };
-  const profileMeows = () => {
-    setList(listBackUp);
+  const profileMeows = (e) => {
+    setList(e);
     setFlowCardKey(flowCardKey + 1);
+    setIsMeows(true);
   };
   return (
     <div className="home">

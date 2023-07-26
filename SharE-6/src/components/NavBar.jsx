@@ -4,15 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -32,10 +24,14 @@ export default function NavBar(props) {
   };
   const goProfile = () => {
     navigate(`${props.user.username}`);
-    props.goProfile();
+    const result = axios
+      .get("http://localhost:8080/api/meows/" + props.user.userId)
+      .then((e) => {
+        props.goProfile(e.data);
+      });
   };
   const exiter = () => {
-    props.func(false);
+    location.reload();
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
