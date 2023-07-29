@@ -1,4 +1,3 @@
-import Meow from "./Meow";
 import axios from "axios";
 
 function Numbers(props) {
