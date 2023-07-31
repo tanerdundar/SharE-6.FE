@@ -18,7 +18,11 @@ function FlowUser(props) {
       <div className="user-detail-left">
         <div
           className="meow-user-photo"
-          style={{ width: "60%", marginLeft: "20%" }}
+          style={{
+            width: "60%",
+            marginLeft: "20%",
+            backgroundColor: props.user.backgroundColor,
+          }}
         >
           {props.user.username[0].toUpperCase()}
         </div>

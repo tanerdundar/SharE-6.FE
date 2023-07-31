@@ -14,7 +14,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Home from "./Home";
-import { FaPaw } from "react-icons/fa";
 
 function Copyright(props) {
   return (

@@ -8,27 +8,10 @@ import axios from "axios";
 
 function App() {
   const [isSigned, setIsSigned] = useState(true);
-  const [isLogged, setIsLogged] = useState(false);
-  const [realUser, setRealUser] = useState("deneme");
-  let userId = 0;
 
   const signChanger = () => {
     setIsSigned(!isSigned);
   };
-
-  // useEffect(() => {
-  //   if (isLogged && userId !== 0) {
-  //     axios
-  //       .get("http://localhost:8080/api/users/" + userId)
-  //       .then((response) => {
-  //         const fetchedUser = response.data;
-  //         setRealUser(fetchedUser);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // }, [isLogged, userId]);
 
   return (
     <Router>

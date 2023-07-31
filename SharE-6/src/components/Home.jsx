@@ -26,7 +26,7 @@ function Home(props) {
         setListBackUp(e.data);
       });
   }
-
+  console.log(props.user);
   const exiter = () => {
     props.func(false);
   };
