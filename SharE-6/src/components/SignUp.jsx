@@ -61,7 +61,7 @@ export default function SignUp(props) {
           password: data.get("password"),
         };
         const response = await axios
-          .post("http://localhost:8080/api/users", pUser)
+          .post("http://138.68.66.115:8080/api/users", pUser)
           .then((e) => {
             setUser(e.data);
             setSitu(false);
@@ -123,7 +123,7 @@ export default function SignUp(props) {
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
@@ -133,7 +133,7 @@ export default function SignUp(props) {
                     label="Username"
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}></Grid>
+
                 <Grid item xs={12}>
                   <TextField
                     required

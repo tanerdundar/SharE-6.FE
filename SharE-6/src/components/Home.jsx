@@ -20,7 +20,7 @@ function Home(props) {
   if (sth) {
     setSth(!sth);
     const response = axios
-      .get("http://localhost:8080/api/meows/home/" + props.user.userId)
+      .get("http://138.68.66.115:8080/api/meows/home/" + props.user.userId)
       .then((e) => {
         setList(e.data);
         setListBackUp(e.data);

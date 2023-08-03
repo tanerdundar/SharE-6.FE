@@ -19,7 +19,7 @@ function NewMeow(props) {
     setCharNumber(189);
     const meow = { ownerId, content };
     const response = await axios
-      .post("http://localhost:8080/api/meows", meow)
+      .post("http://138.68.66.115:8080/api/meows", meow)
       .then((response) => {
         if (response.data) {
           setInputValue("");

@@ -17,7 +17,7 @@ export default function NavBar(props) {
   const goHome = () => {
     navigate("home");
     const response = axios
-      .get("http://localhost:8080/api/meows/home/" + props.user.userId)
+      .get("http://138.68.66.115:8080/api/meows/home/" + props.user.userId)
       .then((e) => {
         props.goHome(e.data);
       });
@@ -25,7 +25,7 @@ export default function NavBar(props) {
   const goProfile = () => {
     navigate(`${props.user.username}`);
     const result = axios
-      .get("http://localhost:8080/api/meows/" + props.user.userId)
+      .get("http://138.68.66.115:8080/api/meows/" + props.user.userId)
       .then((e) => {
         props.goProfile(e.data);
       });

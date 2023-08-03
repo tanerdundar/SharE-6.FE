@@ -21,7 +21,10 @@ function FoundUser(props) {
     };
     console.log(props.user);
     const response = await axios
-      .post("http://localhost:8080/api/follows/" + props.owner.userId, request)
+      .post(
+        "http://138.68.66.115:8080/api/follows/" + props.owner.userId,
+        request
+      )
       .then(() => {});
 
     setFollow(!follow);

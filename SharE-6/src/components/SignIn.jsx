@@ -66,7 +66,7 @@ export default function SignIn(props) {
     const user = { username, password };
 
     const response = await axios
-      .post("http://localhost:8080/api/users/login", user)
+      .post("http://138.68.66.115:8080/api/users/login", user)
       .then((response) => {
         navigate("home");
         findUser(response.data);
@@ -78,7 +78,7 @@ export default function SignIn(props) {
   };
   const findUser = (id) => {
     const response = axios
-      .get("http://localhost:8080/api/users/" + id)
+      .get("http://138.68.66.115:8080/api/users/" + id)
       .then((e) => {
         setUser(e.data);
         setIsLogged(!isLogged);

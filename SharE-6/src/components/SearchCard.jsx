@@ -25,7 +25,7 @@ export default function SearchCard(props) {
     if (searchedUserName !== "") {
       const response = await axios
         .get(
-          "http://localhost:8080/api/users/check/" +
+          "http://138.68.66.115:8080/api/users/check/" +
             searchedUserName +
             "/" +
             props.owner.userId

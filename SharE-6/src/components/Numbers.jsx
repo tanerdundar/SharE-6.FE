@@ -5,7 +5,7 @@ function Numbers(props) {
 
   const findNeeds = async () => {
     const list = await axios.get(
-      "http://localhost:8080/api/" +
+      "http://138.68.66.115:8080/api/" +
         (props.text == "Meows" ? "meows" : "users") +
         "/" +
         props.owner.userId +

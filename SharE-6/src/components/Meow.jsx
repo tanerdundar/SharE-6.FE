@@ -19,14 +19,14 @@ const Meow = (props) => {
   const liker = () => {
     const response = !isLike
       ? axios.post(
-          "http://localhost:8080/api/likes/" +
+          "http://138.68.66.115:8080/api/likes/" +
             props.logged.userId +
             "/" +
             props.meow.meowId
         )
       : axios
           .delete(
-            "http://localhost:8080/api/likes/" +
+            "http://138.68.66.115:8080/api/likes/" +
               props.logged.userId +
               "/" +
               props.meow.meowId

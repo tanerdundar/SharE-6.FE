@@ -36,7 +36,7 @@ export default function ProfileCard(props) {
   const saveName = () => {
     setStatus(true);
     const response = axios.put(
-      "http://localhost:8080/api/users/" + props.user.userId,
+      "http://138.68.66.115:8080/api/users/" + props.user.userId,
       input
     );
     console.log(props.user.userId);
