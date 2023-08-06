@@ -6,6 +6,7 @@ import SearchCard from "./SearchCard";
 import NewMeow from "./NewMeow";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import ZeroFollow from "./ZeroFOllow";
 
 function Home(props) {
   const [isMeows, setIsMeows] = useState(true);
@@ -26,16 +27,10 @@ function Home(props) {
         setListBackUp(e.data);
       });
   }
-  console.log(props.user);
   const exiter = () => {
     props.func(false);
   };
 
-  // useEffect(() => {
-  //   if (list !== "") {
-  //     setList(list);
-  //   }
-  // }, [list]);
   const setHomeList = (x, y) => {
     setList(x.data);
     setIsMeows(y);
@@ -71,7 +66,8 @@ function Home(props) {
               changer={props.changer}
               isLogged={props.isLogged}
             />
-            {list !== "" && (
+            {/* {list !== "" && ( */}
+            {list.length > 0 ? (
               <FlowCard
                 toUpest={setClickedUser}
                 key={flowCardKey}
@@ -79,6 +75,8 @@ function Home(props) {
                 kind={isMeows}
                 user={props.user}
               />
+            ) : (
+              <ZeroFollow />
             )}
           </div>
           <div className="right">
