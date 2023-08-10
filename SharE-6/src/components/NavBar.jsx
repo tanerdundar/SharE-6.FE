@@ -9,13 +9,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function NavBar(props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const logChanger = () => {
-    navigate("login");
+    //  navigate("login");
     props.changer(props.isLogged);
   };
   const goHome = () => {
-    navigate("home");
+    // navigate("home");
     const response = axios
       .get("http://138.68.66.115:8080/api/meows/home/" + props.user.userId)
       .then((e) => {
@@ -23,12 +23,15 @@ export default function NavBar(props) {
       });
   };
   const goProfile = () => {
-    navigate(`${props.user.username}`);
+    //  navigate(`${props.user.username}`);
     const result = axios
       .get("http://138.68.66.115:8080/api/meows/" + props.user.userId)
       .then((e) => {
         props.goProfile(e.data);
       });
+  };
+  const goAdminPanel = () => {
+    props.goAdminPanel();
   };
   const exiter = () => {
     location.reload();
@@ -40,32 +43,47 @@ export default function NavBar(props) {
         style={{ backgroundColor: " rgba(255, 170, 12, 0.594)" }}
       >
         <Toolbar>
-          <Typography
+          <div
             onClick={goHome}
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1 }}
             style={{
               cursor: "pointer",
               display: "flex",
               color: "rgba(5, 5, 245, 0.922)",
+              width: "%40",
             }}
           >
             Home
-          </Typography>
-          <Typography
+          </div>
+          <div
             onClick={goProfile}
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1 }}
             style={{
               cursor: "pointer",
-              marginRight: "40%",
+              marginLeft: "5%",
               color: "rgba(5, 5, 245, 0.922)",
             }}
           >
             My Meows
-          </Typography>
+          </div>
+          <div
+            onClick={goAdminPanel}
+            style={{
+              marginLeft: "5%",
+              width: "55%",
+            }}
+          >
+            {props.user.userRank == "ADMIN" ? (
+              <div
+                style={{
+                  cursor: "pointer",
+                  color: "red",
+                }}
+              >
+                ADMIN
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
 
           <div>
             <IconButton

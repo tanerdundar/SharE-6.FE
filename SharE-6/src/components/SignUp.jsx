@@ -38,7 +38,7 @@ const defaultTheme = createTheme();
 export default function SignUp(props) {
   const [user, setUser] = useState(" ");
   const [situ, setSitu] = useState(true);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [visible, setVisible] = useState(true);
@@ -75,7 +75,7 @@ export default function SignUp(props) {
   };
 
   const signChanger = () => {
-    navigate("login");
+    // navigate("login");
     props.changer(props.isSigned);
   };
   const setLogged = () => {

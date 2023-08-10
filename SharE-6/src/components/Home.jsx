@@ -7,16 +7,18 @@ import NewMeow from "./NewMeow";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ZeroFollow from "./ZeroFOllow";
+import AdminPanel from "./AdminPanel";
 
 function Home(props) {
   const [isMeows, setIsMeows] = useState(true);
   const [sth, setSth] = useState(true);
-  useNavigate("home");
+  // useNavigate("home");
   const [list, setList] = useState("");
   const [flowCardKey, setFlowCardKey] = useState(0);
   const [cUser, setCUser] = useState("");
   const [listBackUp, setListBackUp] = useState("");
   const [myMeows, setMyMeows] = useState("");
+  const [adminPanelOn, setAdminPanelOn] = useState(false);
 
   if (sth) {
     setSth(!sth);
@@ -43,11 +45,16 @@ function Home(props) {
     setList(e);
     setFlowCardKey(flowCardKey + 1);
     setIsMeows(true);
+    setAdminPanelOn(false);
   };
   const profileMeows = (e) => {
     setList(e);
     setFlowCardKey(flowCardKey + 1);
     setIsMeows(true);
+    setAdminPanelOn(false);
+  };
+  const adminPanel = () => {
+    setAdminPanelOn(true);
   };
   return (
     <div className="home">
@@ -61,13 +68,16 @@ function Home(props) {
             <NavBar
               goHome={listSetter}
               goProfile={profileMeows}
+              goAdminPanel={adminPanel}
               func={exiter}
               user={props.user}
               changer={props.changer}
               isLogged={props.isLogged}
             />
-            {/* {list !== "" && ( */}
-            {list.length > 0 ? (
+
+            {adminPanelOn ? (
+              <AdminPanel />
+            ) : list.length > 0 ? (
               <FlowCard
                 toUpest={setClickedUser}
                 key={flowCardKey}

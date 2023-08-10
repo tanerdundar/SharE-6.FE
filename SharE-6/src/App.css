@@ -15,7 +15,7 @@
 }
 .search {
   width: 100%;
-  height: 67vh;
+  height: 65vh;
 }
 .left {
   margin-top: 10vh;
@@ -325,6 +325,52 @@
 }
 .zero-follow-text {
   margin-top: 3vh;
-  margin-left: 5%;
   color: rgb(35, 35, 167);
+  display: flex;
+}
+.admin-panel {
+  height: 85vh;
+  margin-top: 0.6vh;
+  display: flex;
+  border: 8px solid rgb(215, 29, 29);
+  align-items: center;
+  justify-content: center;
+}
+.admin-panel-inside {
+  display: flex;
+  width: 100%;
+  height: 24vh;
+  justify-content: center;
+}
+.admin-panel-icon {
+  height: 20vh;
+  width: 24%;
+  margin: 0 5%;
+  position: relative;
+  display: inline-block;
+}
+.admin-panel-icons {
+  height: 18vh;
+  width: 75%;
+  color: rgba(5, 5, 245, 0.922);
+}
+
+.tooltip-text {
+  display: none;
+  position: absolute;
+  top: 21vh; /* İstediğiniz konuma ayarlayabilirsiniz */
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.admin-panel-icon:hover .tooltip-text {
+  display: block;
+}
+.user-add-panel {
+  display: flex;
+  flex-direction: column;
 }
