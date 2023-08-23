@@ -15,7 +15,9 @@ const bull = (
 );
 
 export default function ProfileCard(props) {
-  const [meowNumber, setMeowNumber] = useState(props.user.numberOfMeows);
+  const [meowNumber, setMeowNumber] = useState(
+    props.user.numberOfMeows + props.meows
+  );
   const [name, setName] = useState(
     props.user.name == null ? props.user.username : props.user.name
   );
@@ -54,6 +56,7 @@ export default function ProfileCard(props) {
         margin: "6vh 10%",
         border: "6px  rgba(255, 170, 12, 0.594) solid",
         boxShadow: "none",
+        borderRadius: "20px",
       }}
     >
       <div className="profile">

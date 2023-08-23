@@ -93,7 +93,15 @@ export default function SignIn(props) {
         <Home func={setLogged} user={user} />
       ) : (
         <ThemeProvider theme={defaultTheme}>
-          <Container component="main" maxWidth="xs">
+          <Container
+            style={{
+              backgroundColor: "white",
+              paddingBottom: "5vh",
+              borderRadius: "20px",
+            }}
+            component="main"
+            maxWidth="xs"
+          >
             <CssBaseline />
             <Box
               sx={{

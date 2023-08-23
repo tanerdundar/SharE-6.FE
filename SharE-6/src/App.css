@@ -1,5 +1,8 @@
+/* #root {
+  background-color: rgb(179, 179, 239);
+} */
 .out {
-  /* background-color: aqua;   */
+  background-color: rgb(179, 179, 239);
 }
 .cards {
   display: grid;
@@ -47,7 +50,7 @@
   align-items: center;
 }
 .photo {
-  height: 35vh;
+  height: 17vh;
 }
 .photo-inside {
   height: 16vh;
@@ -63,13 +66,13 @@
   flex-direction: column;
 }
 .numbers {
-  height: 12vh;
+  height: 5vh;
 }
 .number-inside {
   width: 30%;
 }
 .mini-profile {
-  height: 25vh;
+  height: 14vh;
 }
 .mini-profile-inside {
   flex-direction: row;
@@ -162,9 +165,8 @@
 }
 .newmeow {
   height: 24vh;
-  margin-top: 21vh;
+  margin-top: 27vh;
   width: 95%;
-  border-bottom: 1px dotted rgba(255, 170, 12, 0.594);
 }
 .textbox {
   margin: 1vh 0;
@@ -181,10 +183,15 @@
   width: 80%;
   height: 4vh;
 }
-.char,
-.send {
+.char {
   width: 40%;
   height: 3vh;
+}
+.send {
+  width: 40%;
+  height: 5vh;
+  border-radius: 15px;
+  font-size: 2vh;
 }
 
 .send {
@@ -197,6 +204,7 @@
   font-size: 4vh;
   border: 5px solid rgba(255, 170, 12, 0.594);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 18px;
 }
 .right {
   width: 40%;
@@ -324,8 +332,7 @@
   margin-left: 25%;
 }
 .zero-follow-text {
-  margin-top: 3vh;
-  color: rgb(35, 35, 167);
+  color: rgba(156, 97, 7, 0.79);
   display: flex;
 }
 .admin-panel {
@@ -353,6 +360,7 @@
   height: 18vh;
   width: 75%;
   color: rgba(5, 5, 245, 0.922);
+  cursor: pointer;
 }
 
 .tooltip-text {
@@ -373,4 +381,11 @@
 .user-add-panel {
   display: flex;
   flex-direction: column;
+}
+.asd {
+  padding: 1vh 2%;
+  border-radius: 35px;
+}
+.asd:hover {
+  background-color: rgb(215, 167, 100);
 }

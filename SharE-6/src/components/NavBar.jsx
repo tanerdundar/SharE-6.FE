@@ -44,6 +44,7 @@ export default function NavBar(props) {
       >
         <Toolbar>
           <div
+            className="asd"
             onClick={goHome}
             style={{
               cursor: "pointer",
@@ -55,10 +56,10 @@ export default function NavBar(props) {
             Home
           </div>
           <div
+            className="asd"
             onClick={goProfile}
             style={{
               cursor: "pointer",
-              marginLeft: "5%",
               color: "rgba(5, 5, 245, 0.922)",
             }}
           >
@@ -67,7 +68,6 @@ export default function NavBar(props) {
           <div
             onClick={goAdminPanel}
             style={{
-              marginLeft: "5%",
               width: "55%",
             }}
           >

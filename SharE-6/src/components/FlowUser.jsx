@@ -13,6 +13,7 @@ function FlowUser(props) {
         gridTemplateColumns: "1fr 3fr",
         backgroundColor: "whitesmoke",
         marginTop: "1vh",
+        borderRadius: "20px",
       }}
     >
       <div className="user-detail-left">

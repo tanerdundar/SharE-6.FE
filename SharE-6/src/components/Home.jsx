@@ -17,7 +17,7 @@ function Home(props) {
   const [flowCardKey, setFlowCardKey] = useState(0);
   const [cUser, setCUser] = useState("");
   const [listBackUp, setListBackUp] = useState("");
-  const [myMeows, setMyMeows] = useState("");
+  const [meowNumber, setMeowNumber] = useState(0);
   const [adminPanelOn, setAdminPanelOn] = useState(false);
 
   if (sth) {
@@ -56,12 +56,19 @@ function Home(props) {
   const adminPanel = () => {
     setAdminPanelOn(true);
   };
+  const addMeow = () => {
+    setMeowNumber(meowNumber + 1);
+  };
   return (
     <div className="home">
       <div className="space"></div>
       <div className="cards">
         <div className="card" style={{ marginTop: "5vh" }}>
-          <ProfileCard toUpest={setHomeList} user={props.user} />
+          <ProfileCard
+            meows={meowNumber}
+            toUpest={setHomeList}
+            user={props.user}
+          />
         </div>
         <div className="card others">
           <div className="left">
@@ -90,7 +97,7 @@ function Home(props) {
             )}
           </div>
           <div className="right">
-            <NewMeow owner={props.user} />
+            <NewMeow owner={props.user} update={addMeow} />
             <SearchCard
               toHighest={setHomeList}
               owner={props.user}

@@ -12,7 +12,7 @@ function ZeroFollow() {
     });
   }, []);
   return (
-    <div style={{ height: "85vh", marginTop: "3vh" }}>
+    <div style={{ height: "88vh" }}>
       <div
         className="card-inside"
         style={{ overflowX: "hidden", overflowY: "auto", marginTop: "1vh" }}

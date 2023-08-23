@@ -51,7 +51,7 @@ export default function SignUp(props) {
       setVisible(true);
     } else {
       if (password != rePassword) {
-        setErrorMessage("Different passwords");
+        setErrorMessage("Passwords do not match!");
         setVisible(true);
       } else {
         const data = new FormData(event.currentTarget);
@@ -93,7 +93,15 @@ export default function SignUp(props) {
   return (
     <ThemeProvider theme={defaultTheme}>
       {situ ? (
-        <Container component="main" maxWidth="xs">
+        <Container
+          component="main"
+          style={{
+            backgroundColor: "white",
+            paddingBottom: "5vh",
+            borderRadius: "20px",
+          }}
+          maxWidth="xs"
+        >
           <CssBaseline />
           <Box
             sx={{

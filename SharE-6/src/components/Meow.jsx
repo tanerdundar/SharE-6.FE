@@ -17,36 +17,37 @@ const Meow = (props) => {
   const minute = date.getMinutes();
 
   const liker = () => {
-    const response = !isLike
+    const newIsLike = !isLike;
+    const newLikeNumber = newIsLike ? likeNumber + 1 : likeNumber - 1;
+
+    const response = newIsLike
       ? axios.post(
           "http://138.68.66.115:8080/api/likes/" +
             props.logged.userId +
             "/" +
             props.meow.meowId
         )
-      : axios
-          .delete(
-            "http://138.68.66.115:8080/api/likes/" +
-              props.logged.userId +
-              "/" +
-              props.meow.meowId
-          )
-          .then((e) => {
-            setIsLike(!isLike);
-            !isLike
-              ? setLikeNumber(likeNumber + 1)
-              : setLikeNumber(likeNumber - 1);
-          });
+      : axios.delete(
+          "http://138.68.66.115:8080/api/likes/" +
+            props.logged.userId +
+            "/" +
+            props.meow.meowId
+        );
+    response.then(() => {
+      setIsLike((prevIsLike) => newIsLike);
+      setLikeNumber((prevLikeNumber) => newLikeNumber);
+    });
   };
   return (
     <Card
       style={{
-        borderRadius: "0",
+        borderRadius: "20px",
         minHeight: "14vh",
         display: "flex",
         flexDirection: "row",
         backgroundColor: "whitesmoke",
         marginTop: "1vh",
+        maxWidth: "100%",
       }}
     >
       <div
@@ -62,7 +63,27 @@ const Meow = (props) => {
             : props.meow.owner.name}
           {" " + "@" + props.meow.owner.username}
         </div>
-        <div className="meow-content">{props.meow.content}</div>
+        <div className="meow-content">{props.meow.content.slice(0, 48)}</div>
+
+        {props.meow.content.length > 48 ? (
+          <div className="meow-content">{props.meow.content.slice(48, 96)}</div>
+        ) : (
+          <></>
+        )}
+        {props.meow.content.length > 96 ? (
+          <div className="meow-content">
+            {props.meow.content.slice(96, 144)}
+          </div>
+        ) : (
+          <></>
+        )}
+        {props.meow.content.length > 144 ? (
+          <div className="meow-content">
+            {props.meow.content.slice(144, 190)}
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="meow-others">
           <div className="like">
             <div className="like-number">{likeNumber}</div>
@@ -84,3 +105,4 @@ const Meow = (props) => {
 };
 
 export default Meow;
+//ssssssssssssssssssssssssssssssssss

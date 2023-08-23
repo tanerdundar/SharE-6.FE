@@ -5,6 +5,9 @@ import { FaUserEdit, FaUserPlus } from "react-icons/fa";
 function AdminPanel() {
   const [addUser, setAddUser] = useState(false);
   const [editUser, setEditUser] = useState(false);
+  const [usernameContent, setUsernameContent] = useState("");
+  const [emailContent, setEmailContent] = useState("");
+  const [passwordContent, setPasswordContent] = useState("");
   const userEditor = () => {
     setEditUser(true);
   };
@@ -14,13 +17,25 @@ function AdminPanel() {
   const exiter = () => {
     setAddUser(false);
   };
+  const usernameSetter = (e) => {
+    setUsernameContent(e.target.value);
+  };
+  const emailSetter = (e) => {
+    setEmailContent(e.target.value);
+  };
+  const passwordSetter = (e) => {
+    setPasswordContent(e.target.value);
+  };
+  const addNewAdmin = () => {
+    console.log("new admin added");
+  };
   return (
     <div className="admin-panel">
       {addUser ? (
         <div className="user-add-panel">
           <div
             style={{
-              height: "20vh",
+              height: "10vh",
               width: "7%",
               marginLeft: "87%",
             }}
@@ -45,6 +60,7 @@ function AdminPanel() {
                 fullWidth
                 id="firstName"
                 label="Username"
+                onChange={usernameSetter}
               />
             </Grid>
 
@@ -56,6 +72,7 @@ function AdminPanel() {
                 label="Email"
                 name="email"
                 autoComplete="email"
+                onChange={emailSetter}
               />
             </Grid>
 
@@ -95,7 +112,9 @@ function AdminPanel() {
               backgroundColor: "rgba(35, 35, 167, 0.484)",
               borderRadius: "10px",
               border: "none",
+              cursor: "pointer",
             }}
+            onClick={addNewAdmin}
           >
             Add New Admin
           </button>

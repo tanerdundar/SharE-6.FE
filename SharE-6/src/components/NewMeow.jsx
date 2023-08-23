@@ -16,6 +16,7 @@ function NewMeow(props) {
     setError(true);
   };
   const createMeow = async () => {
+    props.update();
     setCharNumber(189);
     const meow = { ownerId, content };
     const response = await axios
