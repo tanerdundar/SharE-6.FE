@@ -82,6 +82,7 @@ export default function SearchCard(props) {
           owner={props.owner}
           user={user}
           func={isSearchedSetter}
+          asdd={props.asd}
         />
       )}
     </>

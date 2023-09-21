@@ -106,7 +106,7 @@ export default function ProfileCard(props) {
           />
           <Numbers
             user={props.user}
-            number={followingNumber}
+            number={props.fCount + followingNumber}
             text={"Followings"}
             toUp={toUpper}
             owner={props.user}

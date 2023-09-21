@@ -25,7 +25,13 @@ function FoundUser(props) {
         "http://138.68.66.115:8080/api/follows/" + props.owner.userId,
         request
       )
-      .then(() => {});
+      .then((data) => {
+        if (
+          follow
+            ? props.asdd((prev) => prev - 1)
+            : props.asdd((prev) => prev + 1)
+        );
+      });
 
     setFollow(!follow);
   };

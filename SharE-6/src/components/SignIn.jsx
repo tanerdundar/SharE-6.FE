@@ -35,6 +35,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn(props) {
+  const [followCount, setFollowCount] = useState(0);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [wrong, setWrong] = useState(false);
@@ -81,16 +82,23 @@ export default function SignIn(props) {
       .get("http://138.68.66.115:8080/api/users/" + id)
       .then((e) => {
         setUser(e.data);
+        setFollowCount(e.data.numberOfFollowers);
         setIsLogged(!isLogged);
       });
   };
   const setLogged = () => {
     setIsLogged(!isLogged);
   };
+  console.log(followCount);
   return (
     <>
       {isLogged ? (
-        <Home func={setLogged} user={user} />
+        <Home
+          func={setLogged}
+          user={user}
+          fCount={followCount}
+          asd={setFollowCount}
+        />
       ) : (
         <ThemeProvider theme={defaultTheme}>
           <Container

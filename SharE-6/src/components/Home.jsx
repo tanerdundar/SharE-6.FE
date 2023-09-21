@@ -13,6 +13,7 @@ function Home(props) {
   const [isMeows, setIsMeows] = useState(true);
   const [sth, setSth] = useState(true);
   // useNavigate("home");
+
   const [list, setList] = useState("");
   const [flowCardKey, setFlowCardKey] = useState(0);
   const [cUser, setCUser] = useState("");
@@ -68,6 +69,7 @@ function Home(props) {
             meows={meowNumber}
             toUpest={setHomeList}
             user={props.user}
+            fCount={props.fCount}
           />
         </div>
         <div className="card others">
@@ -99,6 +101,7 @@ function Home(props) {
           <div className="right">
             <NewMeow owner={props.user} update={addMeow} />
             <SearchCard
+              asd={props.asd}
               toHighest={setHomeList}
               owner={props.user}
               searchdUser={cUser}
