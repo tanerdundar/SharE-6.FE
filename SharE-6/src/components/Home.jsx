@@ -6,7 +6,7 @@ import SearchCard from "./SearchCard";
 import NewMeow from "./NewMeow";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ZeroFollow from "./ZeroFOllow";
+import Zero from "./Zero";
 import AdminPanel from "./AdminPanel";
 
 function Home(props) {
@@ -95,7 +95,7 @@ function Home(props) {
                 user={props.user}
               />
             ) : (
-              <ZeroFollow />
+              <Zero />
             )}
           </div>
           <div className="right">
