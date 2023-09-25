@@ -5,6 +5,7 @@ import SentimentVerySatisfiedTwoToneIcon from "@mui/icons-material/SentimentVery
 import axios from "axios";
 import { useState } from "react";
 import { FaPaw } from "react-icons/fa";
+import "animate.css";
 
 const Meow = (props) => {
   const [isLike, setIsLike] = useState(props.meow.liked);
@@ -47,7 +48,7 @@ const Meow = (props) => {
         flexDirection: "row",
         backgroundColor: "whitesmoke",
         marginTop: "1vh",
-        maxWidth: "100%",
+        maxWidth: "99%",
       }}
     >
       <div
@@ -57,29 +58,29 @@ const Meow = (props) => {
         {props.meow.owner.username[0].toUpperCase()}
       </div>
       <div className="meow-right">
-        <div className="meow-user">
+        <div className="meow-user" style={{ cursor: "pointer" }}>
           {props.meow.owner.name == null
             ? props.meow.owner.username
             : props.meow.owner.name}
           {" " + "@" + props.meow.owner.username}
         </div>
-        <div className="meow-content">{props.meow.content.slice(0, 48)}</div>
+        <div className="meow-content">{props.meow.content.slice(0, 47)}</div>
 
-        {props.meow.content.length > 48 ? (
-          <div className="meow-content">{props.meow.content.slice(48, 96)}</div>
+        {props.meow.content.length > 47 ? (
+          <div className="meow-content">{props.meow.content.slice(47, 94)}</div>
         ) : (
           <></>
         )}
-        {props.meow.content.length > 96 ? (
+        {props.meow.content.length > 94 ? (
           <div className="meow-content">
-            {props.meow.content.slice(96, 144)}
+            {props.meow.content.slice(94, 141)}
           </div>
         ) : (
           <></>
         )}
-        {props.meow.content.length > 144 ? (
+        {props.meow.content.length > 141 ? (
           <div className="meow-content">
-            {props.meow.content.slice(144, 190)}
+            {props.meow.content.slice(141, 190)}
           </div>
         ) : (
           <></>
@@ -89,7 +90,14 @@ const Meow = (props) => {
             <div className="like-number">{likeNumber}</div>
             <div className="icon" style={{ cursor: "pointer" }} onClick={liker}>
               {isLike ? (
-                <FaPaw style={{ color: "red", marginTop: "7px" }} />
+                <FaPaw
+                  style={{
+                    animation: "bounceIn",
+                    animationDuration: "1s",
+                    color: "red",
+                    marginTop: "7px",
+                  }}
+                />
               ) : (
                 <FaPaw style={{ color: "black", marginTop: "7px" }} />
               )}
@@ -105,4 +113,3 @@ const Meow = (props) => {
 };
 
 export default Meow;
-//ssssssssssssssssssssssssssssssssss

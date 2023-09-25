@@ -15,6 +15,7 @@ import { useState } from "react";
 import Home from "./Home";
 import axios from "axios";
 import { useEffect } from "react";
+import Logo from "./Logo";
 
 function Copyright(props) {
   return (
@@ -92,6 +93,8 @@ export default function SignUp(props) {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
+      {/* <Logo /> */}
+
       {situ ? (
         <Container
           component="main"
@@ -103,6 +106,7 @@ export default function SignUp(props) {
           maxWidth="xs"
         >
           <CssBaseline />
+
           <Box
             sx={{
               marginTop: 8,

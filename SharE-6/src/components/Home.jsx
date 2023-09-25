@@ -8,6 +8,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Zero from "./Zero";
 import AdminPanel from "./AdminPanel";
+import Logo from "./Logo";
 
 function Home(props) {
   const [isMeows, setIsMeows] = useState(true);
@@ -55,7 +56,7 @@ function Home(props) {
     setAdminPanelOn(false);
   };
   const adminPanel = () => {
-    setAdminPanelOn(true);
+    setAdminPanelOn(!adminPanelOn);
   };
   const addMeow = () => {
     setMeowNumber(meowNumber + 1);
@@ -65,6 +66,7 @@ function Home(props) {
       <div className="space"></div>
       <div className="cards">
         <div className="card" style={{ marginTop: "5vh" }}>
+          <Logo />
           <ProfileCard
             meows={meowNumber}
             toUpest={setHomeList}

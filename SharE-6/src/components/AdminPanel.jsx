@@ -1,6 +1,7 @@
 import { Grid, TextField } from "@mui/material";
 import { useState } from "react";
 import { FaUserEdit, FaUserPlus } from "react-icons/fa";
+import axios from "axios";
 
 function AdminPanel() {
   const [addUser, setAddUser] = useState(false);
@@ -8,6 +9,10 @@ function AdminPanel() {
   const [usernameContent, setUsernameContent] = useState("");
   const [emailContent, setEmailContent] = useState("");
   const [passwordContent, setPasswordContent] = useState("");
+  const [rePasswordContent, setRepasswordContent] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [visible, setVisible] = useState(false);
+
   const userEditor = () => {
     setEditUser(true);
   };
@@ -19,15 +24,41 @@ function AdminPanel() {
   };
   const usernameSetter = (e) => {
     setUsernameContent(e.target.value);
+    setVisible(false);
   };
   const emailSetter = (e) => {
     setEmailContent(e.target.value);
+    setVisible(false);
   };
   const passwordSetter = (e) => {
     setPasswordContent(e.target.value);
+    setVisible(false);
   };
-  const addNewAdmin = () => {
-    console.log("new admin added");
+  const rePasswordSetter = (e) => {
+    setRepasswordContent(e.target.value);
+    setVisible(false);
+  };
+  const addNewAdmin = async () => {
+    if (passwordContent == rePasswordContent) {
+      const pUser = {
+        username: usernameContent,
+        email: emailContent,
+        password: passwordContent,
+      };
+
+      const response = await axios
+        .post("http://138.68.66.115:8080/api/users", pUser)
+        .then((e) => {
+          console.log(pUser);
+        })
+        .catch((e) => {
+          setErrorMessage(e.response.data);
+          setVisible(true);
+        });
+    } else {
+      setErrorMessage("Passwords do not match!");
+      setVisible(true);
+    }
   };
   return (
     <div className="admin-panel">
@@ -85,6 +116,7 @@ function AdminPanel() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                onChange={passwordSetter}
               />
             </Grid>
             <Grid item xs={12} sm={5}>
@@ -96,13 +128,18 @@ function AdminPanel() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                onChange={rePasswordSetter}
               />
             </Grid>
             {/* <div
               style={{ paddingLeft: "20px", fontSize: "2vh" }}
               className="message"
             ></div> */}
+            <div style={{ height: "2vh", color: "red" }}>
+              {visible ? errorMessage : ""}
+            </div>
           </Grid>
+
           <button
             style={{
               margin: "2vh 0 0 25%",
