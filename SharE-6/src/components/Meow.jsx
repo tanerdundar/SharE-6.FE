@@ -39,6 +39,9 @@ const Meow = (props) => {
       setLikeNumber((prevLikeNumber) => newLikeNumber);
     });
   };
+  const toSearchedUser = () => {
+    props.toUp(props.meow.owner);
+  };
   return (
     <Card
       style={{
@@ -58,33 +61,17 @@ const Meow = (props) => {
         {props.meow.owner.username[0].toUpperCase()}
       </div>
       <div className="meow-right">
-        <div className="meow-user" style={{ cursor: "pointer" }}>
+        <div
+          className="meow-user"
+          onClick={toSearchedUser}
+          style={{ cursor: "pointer" }}
+        >
           {props.meow.owner.name == null
             ? props.meow.owner.username
             : props.meow.owner.name}
           {" " + "@" + props.meow.owner.username}
         </div>
-        <div className="meow-content">{props.meow.content.slice(0, 47)}</div>
-
-        {props.meow.content.length > 47 ? (
-          <div className="meow-content">{props.meow.content.slice(47, 94)}</div>
-        ) : (
-          <></>
-        )}
-        {props.meow.content.length > 94 ? (
-          <div className="meow-content">
-            {props.meow.content.slice(94, 141)}
-          </div>
-        ) : (
-          <></>
-        )}
-        {props.meow.content.length > 141 ? (
-          <div className="meow-content">
-            {props.meow.content.slice(141, 190)}
-          </div>
-        ) : (
-          <></>
-        )}
+        <div className="meow-content">{props.meow.content}</div>
         <div className="meow-others">
           <div className="like">
             <div className="like-number">{likeNumber}</div>

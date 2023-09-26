@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -11,7 +11,7 @@ import FoundUser from "./FoundUser";
 
 export default function SearchCard(props) {
   const [isSearched, setIsSearched] = useState(
-    props.searchedUser == undefined ? true : false
+    props.key > 0 ? false : props.searchedUser == undefined ? true : false
   );
   const [searchedUserName, setSearchedUserName] = useState();
   const [errorMessage, setErrorMessage] = useState("");
@@ -53,7 +53,11 @@ export default function SearchCard(props) {
   const toHighest = (x, y) => {
     props.toHighest(x, y);
   };
-
+  useEffect(() => {
+    setUser(props.searchedUser);
+    console.log(props.searchedUser);
+    1;
+  });
   return (
     <>
       {isSearched ? (

@@ -11,15 +11,23 @@ export default function FlowCard(props) {
   const toUpper = (e) => {
     props.toUpest(e);
   };
+  const toHome = (e) => {
+    props.toSearchCard(e);
+  };
   return (
     <>
       {props.kind ? (
         <div
           className="card-inside"
-          style={{ overflowX: "hidden", overflowY: "auto", marginTop: "3vh" }}
+          style={{
+            overflowX: "hidden",
+            overflowY: "auto",
+            marginTop: "3vh",
+            maxWidth: "680px",
+          }}
         >
           {list.map((e) => {
-            return <Meow logged={props.user} meow={e} />;
+            return <Meow toUp={toHome} logged={props.user} meow={e} />;
           })}
         </div>
       ) : (

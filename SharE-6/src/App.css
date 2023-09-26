@@ -105,8 +105,11 @@
 .meow-others {
   margin: 1vh 0;
 }
+.meow-content {
+  word-wrap: break-word;
+}
 .meow-user {
-  width: 25%;
+  width: 27%;
 }
 .meow-user,
 .others,
