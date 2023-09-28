@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Grid, Tooltip } from "@mui/material";
 
 export default function NavBar(props) {
   // const navigate = useNavigate();
@@ -43,18 +44,23 @@ export default function NavBar(props) {
         style={{ backgroundColor: " rgba(255, 170, 12, 0.594)" }}
       >
         <Toolbar>
-          <div
-            className="asd"
-            onClick={goHome}
-            style={{
-              cursor: "pointer",
-              display: "flex",
-              color: "rgba(5, 5, 245, 0.922)",
-              width: "%40",
-            }}
-          >
-            Home
-          </div>
+          <Grid item>
+            <Tooltip title="Home" placement="top">
+              <div
+                className="asd"
+                onClick={goHome}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  color: "rgba(5, 5, 245, 0.922)",
+                  width: "%40",
+                }}
+              >
+                Home
+              </div>
+            </Tooltip>
+          </Grid>
+
           <div
             className="asd"
             onClick={goProfile}
@@ -65,6 +71,7 @@ export default function NavBar(props) {
           >
             My Meows
           </div>
+
           <div
             onClick={goAdminPanel}
             style={{
@@ -94,10 +101,14 @@ export default function NavBar(props) {
               onClick={logChanger}
               color="inherit"
             >
-              <ExitToAppIcon
-                onClick={exiter}
-                style={{ color: "rgba(5, 5, 245, 0.922)" }}
-              />
+              <Grid item>
+                <Tooltip title="Exit" placement="top">
+                  <ExitToAppIcon
+                    onClick={exiter}
+                    style={{ color: "rgba(5, 5, 245, 0.922)" }}
+                  />
+                </Tooltip>
+              </Grid>
             </IconButton>
           </div>
         </Toolbar>

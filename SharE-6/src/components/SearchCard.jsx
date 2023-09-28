@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FoundUser from "./FoundUser";
+import { Grid, Tooltip } from "@mui/material";
 
 export default function SearchCard(props) {
   const [isSearched, setIsSearched] = useState(
@@ -53,11 +54,7 @@ export default function SearchCard(props) {
   const toHighest = (x, y) => {
     props.toHighest(x, y);
   };
-  useEffect(() => {
-    setUser(props.searchedUser);
-    console.log(props.searchedUser);
-    1;
-  });
+
   return (
     <>
       {isSearched ? (
@@ -74,9 +71,13 @@ export default function SearchCard(props) {
             ) : (
               <div className="message"></div>
             )}
-            <button className="get-button" onClick={userSearch}>
-              Search
-            </button>
+            <Grid item>
+              <Tooltip title="Search" placement="bottom">
+                <button className="get-button" onClick={userSearch}>
+                  Search
+                </button>
+              </Tooltip>
+            </Grid>
           </div>
         </div>
       ) : (

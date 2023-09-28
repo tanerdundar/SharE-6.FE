@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaUserEdit, FaUserPlus } from "react-icons/fa";
 import axios from "axios";
 
-function AdminPanel() {
+function AdminPanel(props) {
   const [addUser, setAddUser] = useState(false);
   const [editUser, setEditUser] = useState(false);
   const [usernameContent, setUsernameContent] = useState("");
@@ -47,7 +47,7 @@ function AdminPanel() {
       };
 
       const response = await axios
-        .post("http://138.68.66.115:8080/api/users", pUser)
+        .post("http://138.68.66.115:8080/api/users/" + props.user.userId, pUser)
         .then((e) => {
           console.log(pUser);
         })

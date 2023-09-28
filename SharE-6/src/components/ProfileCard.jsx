@@ -6,6 +6,7 @@ import MiniProfile from "./MiniProfile";
 import { useState } from "react";
 import { FaPen } from "react-icons/fa";
 import axios from "axios";
+import { Button, Grid, Tooltip } from "@mui/material";
 
 const bull = (
   <Box
@@ -15,6 +16,7 @@ const bull = (
 );
 
 export default function ProfileCard(props) {
+  console.log(props.user);
   const [meowNumber, setMeowNumber] = useState(
     props.user.numberOfMeows + props.meows
   );
@@ -90,9 +92,13 @@ export default function ProfileCard(props) {
                 </div>
               )}
             </div>
-            <div className="edit">
-              <FaPen style={{ cursor: "pointer" }} onClick={editName} />
-            </div>
+            <Grid item>
+              <Tooltip title="Edit your name" placement="right-start">
+                <div className="edit">
+                  <FaPen style={{ cursor: "pointer" }} onClick={editName} />
+                </div>
+              </Tooltip>
+            </Grid>
           </div>
           <div className="nickname"> {"@" + `${props.user.username}`}</div>
         </div>

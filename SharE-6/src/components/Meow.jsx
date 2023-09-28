@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { FaPaw } from "react-icons/fa";
 import "animate.css";
+import { Grid, Tooltip } from "@mui/material";
 
 const Meow = (props) => {
   const [isLike, setIsLike] = useState(props.meow.liked);
@@ -75,20 +76,28 @@ const Meow = (props) => {
         <div className="meow-others">
           <div className="like">
             <div className="like-number">{likeNumber}</div>
-            <div className="icon" style={{ cursor: "pointer" }} onClick={liker}>
-              {isLike ? (
-                <FaPaw
-                  style={{
-                    animation: "bounceIn",
-                    animationDuration: "1s",
-                    color: "red",
-                    marginTop: "7px",
-                  }}
-                />
-              ) : (
-                <FaPaw style={{ color: "black", marginTop: "7px" }} />
-              )}
-            </div>
+            <Grid item>
+              <Tooltip title={!isLike ? "Like" : "Unlike"} placement="right">
+                <div
+                  className="icon"
+                  style={{ cursor: "pointer" }}
+                  onClick={liker}
+                >
+                  {isLike ? (
+                    <FaPaw
+                      style={{
+                        animation: "bounceIn",
+                        animationDuration: "1s",
+                        color: "red",
+                        marginTop: "7px",
+                      }}
+                    />
+                  ) : (
+                    <FaPaw style={{ color: "black", marginTop: "7px" }} />
+                  )}
+                </div>
+              </Tooltip>
+            </Grid>
           </div>
           <div className="date">
             {hour + ":" + minute + " " + day + "-" + month + "-" + year}

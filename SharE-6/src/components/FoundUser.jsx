@@ -5,7 +5,8 @@ import Numbers from "./Numbers";
 import axios from "axios";
 
 function FoundUser(props) {
-  // const [followingId, setFollowingId] = useState(props.user.userId);
+  console.log(props.user);
+  const [followingId, setFollowingId] = useState(props.user.userId);
   const [follow, setFollow] = useState(props.isFollow ? true : false);
   const [meowNumber, setMeowNumber] = useState(props.user.numberOfMeows);
   const [followerNumber, setFollowerNumber] = useState(

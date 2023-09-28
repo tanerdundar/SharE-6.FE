@@ -1,3 +1,4 @@
+import { Grid, Tooltip } from "@mui/material";
 import axios from "axios";
 
 function Numbers(props) {
@@ -19,9 +20,17 @@ function Numbers(props) {
   };
   return (
     <div className="number-inside">
-      <div className="number" onClick={findNeeds} style={{ cursor: "pointer" }}>
-        {props.number}
-      </div>
+      <Grid item>
+        <Tooltip title={props.text} placement="bottom">
+          <div
+            className="number"
+            onClick={findNeeds}
+            style={{ cursor: "pointer" }}
+          >
+            {props.number}
+          </div>
+        </Tooltip>
+      </Grid>
       <div className="description">{props.text}</div>
     </div>
   );

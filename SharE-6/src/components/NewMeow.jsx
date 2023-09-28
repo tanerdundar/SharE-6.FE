@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Grid, Tooltip } from "@mui/material";
 
 function NewMeow(props) {
   const [charNumber, setCharNumber] = useState("189");
@@ -43,9 +44,13 @@ function NewMeow(props) {
       />
       <div className="button">
         <div className="char">{charNumber}</div>
-        <button className="send" onClick={createMeow}>
-          Send Meow
-        </button>
+        <Grid item>
+          <Tooltip title="Send" placement="bottom">
+            <button className="send" onClick={createMeow}>
+              Send Meow
+            </button>
+          </Tooltip>
+        </Grid>
       </div>
       {!error ? (
         <div className="message">{errorMessage}</div>

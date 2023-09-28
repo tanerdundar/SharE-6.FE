@@ -11,13 +11,13 @@ import AdminPanel from "./AdminPanel";
 import Logo from "./Logo";
 
 function Home(props) {
+  console.log(props.user);
   const [isMeows, setIsMeows] = useState(true);
   const [sth, setSth] = useState(true);
   // useNavigate("home");
 
   const [list, setList] = useState("");
   const [flowCardKey, setFlowCardKey] = useState(0);
-  const [searchCardKey, setSearchCardKey] = useState(0);
   const [cUser, setCUser] = useState("");
   const [listBackUp, setListBackUp] = useState("");
   const [meowNumber, setMeowNumber] = useState(0);
@@ -62,10 +62,7 @@ function Home(props) {
   const addMeow = () => {
     setMeowNumber(meowNumber + 1);
   };
-  const toSearch = (e) => {
-    setCUser(e);
-    console.log(e);
-  };
+
   return (
     <div className="home">
       <div className="space"></div>
@@ -92,7 +89,7 @@ function Home(props) {
             />
 
             {adminPanelOn ? (
-              <AdminPanel />
+              <AdminPanel user={props.user} />
             ) : list.length > 0 ? (
               <FlowCard
                 toUpest={setClickedUser}
@@ -100,7 +97,6 @@ function Home(props) {
                 list={list}
                 kind={isMeows}
                 user={props.user}
-                toSearchCard={toSearch}
               />
             ) : (
               <Zero />
@@ -113,7 +109,6 @@ function Home(props) {
               toHighest={setHomeList}
               owner={props.user}
               searchdUser={cUser}
-              key={searchCardKey}
             />
           </div>
         </div>
