@@ -17,6 +17,7 @@ function NewMeow(props) {
   };
 
   const action = <Fragment></Fragment>;
+
   const charCounter = (e) => {
     setOwnerId(props.owner.userId);
     setCharNumber(189 - e.target.value.length);
