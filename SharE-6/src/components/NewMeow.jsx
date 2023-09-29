@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { Grid, Tooltip } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import { Fragment } from "react";
 
 function NewMeow(props) {
   const [charNumber, setCharNumber] = useState("189");
@@ -9,6 +11,12 @@ function NewMeow(props) {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(true);
   const [errorMessage, setErrorMessage] = useState("asd");
+  const [open, setOpen] = useState(false);
+  const handleClose = (event, reason) => {
+    setOpen(false);
+  };
+
+  const action = <Fragment></Fragment>;
   const charCounter = (e) => {
     setOwnerId(props.owner.userId);
     setCharNumber(189 - e.target.value.length);
@@ -26,6 +34,7 @@ function NewMeow(props) {
         if (response.data) {
           setInputValue("");
         }
+        setOpen(true);
       })
       .catch((e) => {
         setErrorMessage(e.response.data);
@@ -47,6 +56,14 @@ function NewMeow(props) {
         <Grid item>
           <Tooltip title="Send" placement="bottom">
             <button className="send" onClick={createMeow}>
+              <Snackbar
+                open={open}
+                autoHideDuration={750}
+                onClose={handleClose}
+                message={"New meow sent!."}
+                style={{ cursor: "auto" }}
+                action={action}
+              />
               Send Meow
             </button>
           </Tooltip>

@@ -40,6 +40,7 @@ function Home(props) {
     setList(x.data);
     setIsMeows(y);
     setFlowCardKey(flowCardKey + 1);
+    setAdminPanelOn(false);
   };
   const setClickedUser = (e) => {
     setCUser(e);

@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import FollowButton from "./FollowButton";
 import MiniProfile from "./MiniProfile";
 import Numbers from "./Numbers";
 import axios from "axios";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 function FoundUser(props) {
   console.log(props.user);
@@ -15,6 +19,12 @@ function FoundUser(props) {
   const [followingNumber, setFollowingNumber] = useState(
     props.user.numberOfFollowings
   );
+  const [open, setOpen] = useState(false);
+  const handleClose = (event, reason) => {
+    setOpen(false);
+  };
+
+  const action = <Fragment></Fragment>;
   const followSetter = async () => {
     const request = {
       followerId: props.owner.userId,
@@ -32,6 +42,7 @@ function FoundUser(props) {
             ? props.asdd((prev) => prev - 1)
             : props.asdd((prev) => prev + 1)
         );
+        setOpen(true);
       });
 
     setFollow(!follow);
@@ -82,6 +93,14 @@ function FoundUser(props) {
       ) : (
         <div className="follow">
           <button className="follow-button" onClick={followSetter}>
+            <Snackbar
+              open={open}
+              autoHideDuration={750}
+              onClose={handleClose}
+              message={follow ? "Followed" : "Unfollowed"}
+              style={{ cursor: "auto" }}
+              action={action}
+            />
             {follow ? "Following" : "Follow"}
           </button>
         </div>

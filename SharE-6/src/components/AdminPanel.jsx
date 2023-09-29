@@ -1,7 +1,11 @@
 import { Grid, TextField } from "@mui/material";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { FaUserEdit, FaUserPlus } from "react-icons/fa";
 import axios from "axios";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 function AdminPanel(props) {
   const [addUser, setAddUser] = useState(false);
@@ -12,6 +16,12 @@ function AdminPanel(props) {
   const [rePasswordContent, setRepasswordContent] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleClose = (event, reason) => {
+    setOpen(false);
+  };
+
+  const action = <Fragment></Fragment>;
 
   const userEditor = () => {
     setEditUser(true);
@@ -50,6 +60,7 @@ function AdminPanel(props) {
         .post("http://138.68.66.115:8080/api/users/" + props.user.userId, pUser)
         .then((e) => {
           console.log(pUser);
+          setOpen(true);
         })
         .catch((e) => {
           setErrorMessage(e.response.data);
@@ -153,6 +164,14 @@ function AdminPanel(props) {
             }}
             onClick={addNewAdmin}
           >
+            <Snackbar
+              style={{ cursor: "auto" }}
+              open={open}
+              autoHideDuration={750}
+              onClose={handleClose}
+              message="New admin added."
+              action={action}
+            />
             Add New Admin
           </button>
         </div>
