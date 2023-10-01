@@ -95,9 +95,11 @@ function FoundUser(props) {
           <button className="follow-button" onClick={followSetter}>
             <Snackbar
               open={open}
-              autoHideDuration={750}
+              autoHideDuration={1250}
               onClose={handleClose}
-              message={follow ? "Followed" : "Unfollowed"}
+              message={`${props.user.username} ${
+                follow ? "followed" : "unfollowed"
+              }`}
               style={{ cursor: "auto" }}
               action={action}
             />

@@ -60,38 +60,43 @@ export default function NavBar(props) {
               </div>
             </Tooltip>
           </Grid>
-
-          <div
-            className="asd"
-            onClick={goProfile}
-            style={{
-              cursor: "pointer",
-              color: "rgba(5, 5, 245, 0.922)",
-            }}
-          >
-            My Meows
-          </div>
-
-          <div
-            onClick={goAdminPanel}
-            style={{
-              width: "55%",
-            }}
-          >
-            {props.user.userRank == "ADMIN" ? (
+          <Grid style={{ padding: "0 2%" }} item>
+            <Tooltip title="My Meows" placement="top">
               <div
+                className="asd"
+                onClick={goProfile}
                 style={{
                   cursor: "pointer",
-                  color: "red",
+                  color: "rgba(5, 5, 245, 0.922)",
                 }}
               >
-                ADMIN
+                My Meows
               </div>
-            ) : (
-              <></>
-            )}
-          </div>
-
+            </Tooltip>
+          </Grid>
+          <Grid style={{ padding: "0 50% 0 0" }} item>
+            <Tooltip title="ADMIN" placement="top">
+              <div
+                onClick={goAdminPanel}
+                style={{
+                  width: "55%",
+                }}
+              >
+                {props.user.userRank == "ADMIN" ? (
+                  <div
+                    style={{
+                      cursor: "pointer",
+                      color: "red",
+                    }}
+                  >
+                    ADMIN
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </Tooltip>
+          </Grid>
           <div>
             <IconButton
               size="large"

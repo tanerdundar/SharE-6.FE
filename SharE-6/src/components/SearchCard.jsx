@@ -10,6 +10,9 @@ import Typography from "@mui/material/Typography";
 import FoundUser from "./FoundUser";
 import { Grid, Tooltip } from "@mui/material";
 
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+
 export default function SearchCard(props) {
   const [isSearched, setIsSearched] = useState(
     props.key > 0 ? false : props.searchedUser == undefined ? true : false
@@ -54,7 +57,11 @@ export default function SearchCard(props) {
   const toHighest = (x, y) => {
     props.toHighest(x, y);
   };
-
+  const top100Films = [
+    { title: "The Shawshank Redemption", year: 1994 },
+    { title: "The Godfather", year: 1972 },
+    { title: "The Godfather: Part II", year: 1974 },
+  ];
   return (
     <>
       {isSearched ? (
@@ -65,6 +72,13 @@ export default function SearchCard(props) {
               type="text"
               onChange={userRecorder}
               placeholder="text here..."
+            />
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={top100Films}
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Movie" />}
             />
             {error ? (
               <div className="message">{errorMessage}</div>
