@@ -9,9 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FoundUser from "./FoundUser";
 import { Grid, Tooltip } from "@mui/material";
-
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 
 export default function SearchCard(props) {
   const [isSearched, setIsSearched] = useState(
@@ -72,13 +70,6 @@ export default function SearchCard(props) {
               type="text"
               onChange={userRecorder}
               placeholder="text here..."
-            />
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={top100Films}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Movie" />}
             />
             {error ? (
               <div className="message">{errorMessage}</div>

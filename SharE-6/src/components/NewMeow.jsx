@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Grid, Tooltip } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import { Fragment } from "react";
+import PropTypes from "prop-types";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 function NewMeow(props) {
   const [charNumber, setCharNumber] = useState("189");
@@ -53,7 +57,8 @@ function NewMeow(props) {
         value={inputValue}
       />
       <div className="button">
-        <div className="char">{charNumber}</div>
+        {/* <div className="char">{charNumber}</div> */}
+        <CircularWithValueLabel charNumber={charNumber} />
         <Grid item>
           <Tooltip title="Send" placement="bottom">
             <button className="send" onClick={createMeow}>
@@ -76,6 +81,48 @@ function NewMeow(props) {
         <div className="message"></div>
       )}
     </div>
+  );
+}
+function CircularProgressWithLabel(props) {
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        display: "inline-flex",
+        border: "5px solid  rgba(255, 170, 12, 0.594)",
+        borderRadius: "50%",
+      }}
+    >
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {props.charNumber}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+export function CircularWithValueLabel(props) {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let pro = Math.floor(((189 - props.charNumber) / 189) * 100);
+    setProgress(props.charNumber <= 0 ? 100 : pro);
+  }, [props.charNumber]);
+
+  return (
+    <CircularProgressWithLabel charNumber={props.charNumber} value={progress} />
   );
 }
 

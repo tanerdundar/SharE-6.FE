@@ -55,7 +55,13 @@ function FoundUser(props) {
     props.toUpest(x, y);
   };
   return (
-    <div className="search">
+    <div
+      className="search"
+      style={{
+        border: "4px solid  rgba(255, 170, 12, 0.594)",
+        backgroundColor: "white",
+      }}
+    >
       <div className="exit">
         <div className="x" onClick={setter}>
           X

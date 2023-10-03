@@ -14,6 +14,7 @@ function FlowUser(props) {
         backgroundColor: "whitesmoke",
         marginTop: "1vh",
         borderRadius: "20px",
+        maxWidth: "99%",
       }}
     >
       <div className="user-detail-left">

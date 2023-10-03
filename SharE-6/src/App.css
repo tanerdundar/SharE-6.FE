@@ -7,19 +7,21 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  height: 95vh;
+  height: 90vh;
   font-family: sans-serif;
 }
 .card,
 .card-inside,
 .search {
   width: 100%;
+  height: 80vh;
+}
+.card-inside {
   height: 85vh;
 }
-
 .search {
   width: 100%;
-  height: 65vh;
+  height: 60vh;
 }
 .left {
   margin-top: 10vh;
@@ -172,7 +174,7 @@
 }
 .newmeow {
   height: 24vh;
-  margin-top: 27vh;
+  margin-top: 17vh;
   width: 95%;
 }
 .textbox {
@@ -188,7 +190,8 @@
 .button {
   justify-content: space-around;
   width: 80%;
-  height: 4vh;
+  height: 25vh;
+  border: 1px solid black;
 }
 .char {
   width: 40%;
@@ -275,7 +278,9 @@
 .foundUser-inner {
   height: 10vh;
   width: 80%;
-  padding-bottom: 10vh;
+  margin-bottom: 5vh;
+  border: 5px solid rgba(255, 170, 12, 0.594);
+  border-radius: 15px;
 }
 .exit {
   width: 80%;

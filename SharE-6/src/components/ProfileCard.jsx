@@ -102,7 +102,14 @@ export default function ProfileCard(props) {
           </div>
           <div className="nickname"> {"@" + `${props.user.username}`}</div>
         </div>
-        <div className="numbers">
+        <div
+          className="numbers"
+          style={{
+            border: "5px solid  rgba(255, 170, 12, 0.594)",
+            padding: "1vh 0",
+            borderRadius: "15px",
+          }}
+        >
           <Numbers
             user={props.user}
             number={meowNumber}
