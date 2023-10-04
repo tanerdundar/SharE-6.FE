@@ -11,7 +11,6 @@ import AdminPanel from "./AdminPanel";
 import Logo from "./Logo";
 
 function Home(props) {
-  console.log(props.user);
   const [isMeows, setIsMeows] = useState(true);
   const [sth, setSth] = useState(true);
   // useNavigate("home");

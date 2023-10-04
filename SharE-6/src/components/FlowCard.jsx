@@ -11,9 +11,6 @@ export default function FlowCard(props) {
   const toUpper = (e) => {
     props.toUpest(e);
   };
-  const toHome = (e) => {
-    props.toSearchCard(e);
-  };
   return (
     <>
       {props.kind ? (
@@ -27,7 +24,7 @@ export default function FlowCard(props) {
           }}
         >
           {list.map((e) => {
-            return <Meow toUp={toHome} logged={props.user} meow={e} />;
+            return <Meow logged={props.user} meow={e} />;
           })}
         </div>
       ) : (

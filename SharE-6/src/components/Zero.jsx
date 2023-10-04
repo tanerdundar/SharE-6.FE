@@ -9,7 +9,6 @@ function Zero() {
   useEffect(() => {
     axios.get("http://138.68.66.115:8080/api/users/zero").then((response) => {
       setList(response.data);
-      console.log(response.data);
     });
   }, []);
   return (

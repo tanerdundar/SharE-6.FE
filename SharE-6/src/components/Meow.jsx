@@ -40,9 +40,7 @@ const Meow = (props) => {
       setLikeNumber((prevLikeNumber) => newLikeNumber);
     });
   };
-  const toSearchedUser = () => {
-    props.toUp(props.meow.owner);
-  };
+
   return (
     <Card
       style={{
@@ -62,11 +60,7 @@ const Meow = (props) => {
         {props.meow.owner.username[0].toUpperCase()}
       </div>
       <div className="meow-right">
-        <div
-          className="meow-user"
-          onClick={toSearchedUser}
-          style={{ cursor: "pointer" }}
-        >
+        <div className="meow-user" style={{ cursor: "pointer" }}>
           {props.meow.owner.name == null
             ? props.meow.owner.username
             : props.meow.owner.name}

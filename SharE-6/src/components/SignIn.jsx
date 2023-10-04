@@ -90,7 +90,6 @@ export default function SignIn(props) {
   const setLogged = () => {
     setIsLogged(!isLogged);
   };
-  console.log(followCount);
   return (
     <>
       {isLogged ? (

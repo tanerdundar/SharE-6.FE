@@ -1,15 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import FoundUser from "./FoundUser";
 import { Grid, Tooltip } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
 
 export default function SearchCard(props) {
   const [isSearched, setIsSearched] = useState(
@@ -22,6 +18,7 @@ export default function SearchCard(props) {
     props.searchedUser == "" ? "" : props.searchedUser
   );
   const [isFollowing, setIsFollowing] = useState(false);
+  const [list, setList] = useState([]);
 
   const userSearch = async () => {
     if (searchedUserName !== "") {
@@ -55,22 +52,46 @@ export default function SearchCard(props) {
   const toHighest = (x, y) => {
     props.toHighest(x, y);
   };
-  const top100Films = [
+  const list1 = [
     { title: "The Shawshank Redemption", year: 1994 },
     { title: "The Godfather", year: 1972 },
-    { title: "The Godfather: Part II", year: 1974 },
   ];
+  const list2 = [
+    { title: "The Godfather: Part II", year: 1974 },
+    { title: "The Dark Knight", year: 2008 },
+  ];
+  const list3 = [
+    { title: "12 Angry Men", year: 1957 },
+    { title: "Schindler's List", year: 1993 },
+  ];
+  const deneme2 = () => {
+    setList(list1);
+  };
+  useEffect(() => {}, [list]);
   return (
     <>
       {isSearched ? (
         <div className="search">
           <div className="search-inside">
-            <input
+            {/* <input
               className="inputer"
               type="text"
               onChange={userRecorder}
               placeholder="text here..."
-            />
+            /> */}
+            {/* <AutoComplete /> */}
+            <Stack spacing={2} sx={{ width: 300 }}>
+              <Autocomplete
+                id="free-solo-demo"
+                freeSolo
+                options={list.map((option) => option.title)}
+                onChange={deneme2}
+                renderInput={(params) => (
+                  <TextField {...params} label="freeSolo" />
+                )}
+              />
+            </Stack>
+
             {error ? (
               <div className="message">{errorMessage}</div>
             ) : (

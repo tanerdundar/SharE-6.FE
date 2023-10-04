@@ -9,7 +9,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
 function FoundUser(props) {
-  console.log(props.user);
   const [followingId, setFollowingId] = useState(props.user.userId);
   const [follow, setFollow] = useState(props.isFollow ? true : false);
   const [meowNumber, setMeowNumber] = useState(props.user.numberOfMeows);
@@ -30,7 +29,6 @@ function FoundUser(props) {
       followerId: props.owner.userId,
       followingId: props.user.userId,
     };
-    console.log(props.user);
     const response = await axios
       .post(
         "http://138.68.66.115:8080/api/follows/" + props.owner.userId,
@@ -55,13 +53,7 @@ function FoundUser(props) {
     props.toUpest(x, y);
   };
   return (
-    <div
-      className="search"
-      style={{
-        border: "4px solid  rgba(255, 170, 12, 0.594)",
-        backgroundColor: "white",
-      }}
-    >
+    <div className="search">
       <div className="exit">
         <div className="x" onClick={setter}>
           X

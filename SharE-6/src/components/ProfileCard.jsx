@@ -16,7 +16,6 @@ const bull = (
 );
 
 export default function ProfileCard(props) {
-  console.log(props.user);
   const [meowNumber, setMeowNumber] = useState(
     props.user.numberOfMeows + props.meows
   );

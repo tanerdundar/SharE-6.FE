@@ -31,7 +31,6 @@ function NewMeow(props) {
   };
   const createMeow = async () => {
     props.update();
-    setCharNumber(189);
     const meow = { ownerId, content };
     const response = await axios
       .post("http://138.68.66.115:8080/api/meows", meow)
@@ -40,6 +39,7 @@ function NewMeow(props) {
           setInputValue("");
         }
         setOpen(true);
+        setCharNumber(189);
       })
       .catch((e) => {
         setErrorMessage(e.response.data);
@@ -89,11 +89,16 @@ function CircularProgressWithLabel(props) {
       sx={{
         position: "relative",
         display: "inline-flex",
-        border: "5px solid  rgba(255, 170, 12, 0.594)",
+        border: "1px solid  black",
         borderRadius: "50%",
+        margin: "1vh 0",
       }}
     >
-      <CircularProgress variant="determinate" {...props} />
+      <CircularProgress
+        style={{ color: "rgba(255, 170, 12, 0.594)" }}
+        variant="determinate"
+        {...props}
+      />
       <Box
         sx={{
           top: 0,
@@ -104,6 +109,7 @@ function CircularProgressWithLabel(props) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          color: "red",
         }}
       >
         <Typography variant="caption" component="div" color="text.secondary">
