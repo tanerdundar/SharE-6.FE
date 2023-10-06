@@ -13,44 +13,16 @@ function AutoComplete() {
     "qwe",
     "123",
   ]);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [age, setAge] = useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const deneme1 = () => {
+    console.log("click");
   };
-
-  const handleClick = (event) => {
-    // console.log(anchorEl);
-    // setAnchorEl(anchorEl ? null : event.target.value);
+  const deneme2 = () => {
+    console.log("change");
   };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popper" : undefined;
 
   return (
-    // <div>
-    //   <input type="text" />
-    //   <div className="suggestions">
-    //     <ul className="suggestionList">
-    //       {suggestionState.map((e) => (
-    //         <li>{e}</li>
-    //       ))}
-    //     </ul>
-    //   </div>
-    // </div>
     <div>
-      <input onChange={handleClick}></input>
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+      <input type="text" onClick={deneme1} onChange={deneme2} />
     </div>
   );
 }

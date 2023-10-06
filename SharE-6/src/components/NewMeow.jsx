@@ -58,7 +58,7 @@ function NewMeow(props) {
       />
       <div className="button">
         {/* <div className="char">{charNumber}</div> */}
-        <CircularWithValueLabel charNumber={charNumber} />
+        <CircularWithValueLabel   charNumber={charNumber} />
         <Grid item>
           <Tooltip title="Send" placement="bottom">
             <button className="send" onClick={createMeow}>
@@ -84,8 +84,8 @@ function NewMeow(props) {
   );
 }
 function CircularProgressWithLabel(props) {
-  return (
-    <Box
+
+  return ( <Box
       sx={{
         position: "relative",
         display: "inline-flex",
@@ -95,7 +95,7 @@ function CircularProgressWithLabel(props) {
       }}
     >
       <CircularProgress
-        style={{ color: "rgba(255, 170, 12, 0.594)" }}
+        style={{ color: props.charNumber<0?"red": "rgba(255, 170, 12, 0.594)" }}
         variant="determinate"
         {...props}
       />

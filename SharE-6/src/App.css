@@ -117,9 +117,9 @@
 .meow-content {
   word-wrap: break-word;
 }
-.meow-user {
+/* .meow-user {
   width: 27%;
-}
+} */
 .meow-user,
 .others,
 .button,
@@ -176,7 +176,7 @@
 }
 
 .search-inside {
-  margin-top: 22vh;
+  margin-top: 12vh;
   width: 80%;
 }
 .newmeow {
@@ -221,6 +221,7 @@
   padding-left: 3%;
   font-size: 4vh;
   border: 5px solid rgba(255, 170, 12, 0.594);
+  border-bottom: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 18px;
 }
@@ -420,7 +421,9 @@ img {
   height: 100%;
 }
 .suggestions {
-  background-color: red;
-  width: 100%;
-  height: auto;
+
+  width: 90%;
+  max-height: 11vh;
+  min-height: 11vh;
+  overflow-x: hidden;
 }

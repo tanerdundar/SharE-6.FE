@@ -5,7 +5,16 @@ import FoundUser from "./FoundUser";
 import { Grid, Tooltip } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import Autocomplete from "@mui/material/Autocomplete";
+import AutoComplete from "./AutoComplete";
+
+const list1 = [
+  { title: "The Shawshank Redemption", year: 1994 },
+  { title: "The Godfather", year: 1972 },
+  { title: "The Godfather: Part II", year: 1974 },
+  { title: "The Dark Knight", year: 2008 },
+  { title: "12 Angry Men", year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+];
 
 export default function SearchCard(props) {
   const [isSearched, setIsSearched] = useState(
@@ -14,12 +23,12 @@ export default function SearchCard(props) {
   const [searchedUserName, setSearchedUserName] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
+  const [showSuggestions,setShowSuggestions]=useState(true)
   const [user, setUser] = useState(
     props.searchedUser == "" ? "" : props.searchedUser
   );
   const [isFollowing, setIsFollowing] = useState(false);
   const [list, setList] = useState([]);
-
   const userSearch = async () => {
     if (searchedUserName !== "") {
       const response = await axios
@@ -41,10 +50,29 @@ export default function SearchCard(props) {
     } else {
     }
   };
-  const userRecorder = (e) => {
+  const userRecorder = async(e) => {
     setSearchedUserName(e.target.value);
     setError(false);
-  };
+    if(e.target.value.length==0){
+      setList([])
+    }else{
+      
+        
+          const response = await axios
+            .get(
+              "http://138.68.66.115:8080/api/users/findSuggestions/" +
+               e.target.value
+            )
+            .then(async (e) => {
+              setList(e.data)
+              console.log(e.data)
+              setShowSuggestions(true)
+
+
+            })
+            
+    
+          }};
   const isSearchedSetter = () => {
     setIsSearched(!isSearched);
     setSearchedUserName("");
@@ -52,52 +80,30 @@ export default function SearchCard(props) {
   const toHighest = (x, y) => {
     props.toHighest(x, y);
   };
-  const list1 = [
-    { title: "The Shawshank Redemption", year: 1994 },
-    { title: "The Godfather", year: 1972 },
-  ];
-  const list2 = [
-    { title: "The Godfather: Part II", year: 1974 },
-    { title: "The Dark Knight", year: 2008 },
-  ];
-  const list3 = [
-    { title: "12 Angry Men", year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-  ];
-  const deneme2 = () => {
-    setList(list1);
-  };
-  useEffect(() => {}, [list]);
+  
   return (
     <>
       {isSearched ? (
         <div className="search">
           <div className="search-inside">
-            {/* <input
+            <input
               className="inputer"
               type="text"
               onChange={userRecorder}
               placeholder="text here..."
-            /> */}
+            />
             {/* <AutoComplete /> */}
-            <Stack spacing={2} sx={{ width: 300 }}>
-              <Autocomplete
-                id="free-solo-demo"
-                freeSolo
-                options={list.map((option) => option.title)}
-                onChange={deneme2}
-                renderInput={(params) => (
-                  <TextField {...params} label="freeSolo" />
-                )}
-              />
-            </Stack>
-
-            {error ? (
+            {/* {error ? (
               <div className="message">{errorMessage}</div>
             ) : (
               <div className="message"></div>
-            )}
-            <Grid item>
+            )} */}
+           {showSuggestions? <div className="suggestions">
+           <div >{list.map((e) => {
+                return <div style={{backgroundColor:"white",paddingLeft:"2%",borderBottom:"1px solid black"}} >{e}</div>;
+              })}</div>
+            </div>:<div></div>}
+            <Grid item style={{ marginTop: "0vh" }}>
               <Tooltip title="Search" placement="bottom">
                 <button className="get-button" onClick={userSearch}>
                   Search
