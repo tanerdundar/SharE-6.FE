@@ -91,7 +91,7 @@ export default function ProfileCard(props) {
                 </div>
               )}
             </div>
-            <Grid item>
+            <Grid item style={{ marginLeft:"5%" }}>
               <Tooltip title="Edit your name" placement="right-start">
                 <div className="edit">
                   <FaPen style={{ cursor: "pointer" }} onClick={editName} />
