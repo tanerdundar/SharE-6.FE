@@ -55,7 +55,8 @@ function FoundUser(props) {
   return (
     <div className="search">
       <div className="exit">
-        <div className="x" onClick={setter}>
+ 
+        <div className="x" style={{width:"10%", cursor: "pointer"}} onClick={setter}>
           X
         </div>
       </div>

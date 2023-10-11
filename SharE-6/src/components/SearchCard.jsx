@@ -27,14 +27,15 @@ export default function SearchCard(props) {
   const [user, setUser] = useState(
     props.searchedUser == "" ? "" : props.searchedUser
   );
+  const [inputValue,setInputValue]= useState("")
   const [isFollowing, setIsFollowing] = useState(false);
   const [list, setList] = useState([]);
   const userSearch = async () => {
-    if (searchedUserName !== "") {
+    if (inputValue !== "") {
       const response = await axios
         .get(
           "http://138.68.66.115:8080/api/users/check/" +
-            searchedUserName +
+            inputValue +
             "/" +
             props.owner.userId
         )
@@ -48,9 +49,11 @@ export default function SearchCard(props) {
           setError(true);
         });
     } else {
+      console.log("asd")
     }
   };
   const userRecorder = async(e) => {
+    setInputValue(e.target.value)
     setSearchedUserName(e.target.value);
     setError(false);
     if(e.target.value.length==0){
@@ -76,22 +79,28 @@ export default function SearchCard(props) {
   const isSearchedSetter = () => {
     setIsSearched(!isSearched);
     setSearchedUserName("");
+    setInputValue("")
+    setShowSuggestions(false)
   };
   const toHighest = (x, y) => {
     props.toHighest(x, y);
   };
-  
+  const inputSetter=(e)=>{
+    setInputValue(e.target.innerText)
+  }
   return (
     <>
       {isSearched ? (
-        <div className="search">
+        <div className="search" >
           <div className="search-inside">
             <input
               className="inputer"
               type="text"
               onChange={userRecorder}
               placeholder="text here..."
+              value={inputValue}
             />
+            {/* <input></input> */}
             {/* <AutoComplete /> */}
             {/* {error ? (
               <div className="message">{errorMessage}</div>
@@ -100,9 +109,10 @@ export default function SearchCard(props) {
             )} */}
            {showSuggestions? <div className="suggestions">
            <div >{list.map((e) => {
-                return <div style={{backgroundColor:"white",paddingLeft:"2%",borderBottom:"1px solid black"}} >{e}</div>;
+                return <div onClick={inputSetter} style={{borderRight:"5px  solid  rgba(255, 170, 12, 0.594)",
+                borderLeft:"5px  solid  rgba(255, 170, 12, 0.594)",paddingLeft:"2%",cursor:"pointer"}} >{e}</div>;
               })}</div>
-            </div>:<div></div>}
+            </div>:<div className="suggestions"></div>}
             <Grid item style={{ marginTop: "0vh" }}>
               <Tooltip title="Search" placement="bottom">
                 <button className="get-button" onClick={userSearch}>
