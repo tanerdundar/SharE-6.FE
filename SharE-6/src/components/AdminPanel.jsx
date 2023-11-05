@@ -2,10 +2,7 @@ import { Grid, TextField } from "@mui/material";
 import { Fragment, useState } from "react";
 import { FaUserEdit, FaUserPlus } from "react-icons/fa";
 import axios from "axios";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 
 function AdminPanel(props) {
   const [addUser, setAddUser] = useState(false);
@@ -16,7 +13,10 @@ function AdminPanel(props) {
   const [rePasswordContent, setRepasswordContent] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [visible, setVisible] = useState(false);
+  const [userFind,setUserFind] = useState(false)
   const [open, setOpen] = useState(false);
+  const [editableUser,setEditableUser]=useState("")
+  const [updateUserName,setUpdateUserName]=useState("")
   const handleClose = (event, reason) => {
     setOpen(false);
   };
@@ -71,6 +71,21 @@ function AdminPanel(props) {
       setVisible(true);
     }
   };
+  const findUser= async()=>{
+    const response = await axios
+    .get(
+      "http://138.68.66.115:8080/api/users/findToUpdate/" +editableUser
+      
+    )
+    .then(async (e) => {
+      if(e.data.userRank=="STANDARD")
+      setUpdateUserName(e.data.username)
+      setUserFind(true)
+    })
+  }
+  const userNameSet=(e)=>{
+    setEditableUser(e.target.value)
+  }
   return (
     <div className="admin-panel">
       {addUser ? (
@@ -176,7 +191,13 @@ function AdminPanel(props) {
           </button>
         </div>
       ) : editUser ? (
-        <>edit</>
+        <div className="edit-user-panel">
+          <input className="inputer" type="text" placeholder="find user to edit" onChange={userNameSet} />
+          {userFind?<div className="user-to-edit">
+            <div className="update-name">{updateUserName}</div>
+          </div>:<div className="user-to-edit"></div>}
+          <button className="get-button" onClick={findUser} style={{width:"40%", cursor:"pointer"}}>Find</button>
+        </div>
       ) : (
         <div className="admin-panel-inside">
           <div className="admin-panel-icon add">

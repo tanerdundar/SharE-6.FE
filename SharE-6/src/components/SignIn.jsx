@@ -96,7 +96,7 @@ export default function SignIn(props) {
         <Home
           func={setLogged}
           user={user}
-          fCount={followCount}
+          // fCount={followCount}
           asd={setFollowCount}
         />
       ) : (
