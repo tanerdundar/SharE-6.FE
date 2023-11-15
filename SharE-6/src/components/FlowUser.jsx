@@ -34,11 +34,7 @@ function FlowUser(props) {
           <div className="username">
             {props.user.name == null ? props.user.username : props.user.name}
           </div>
-          <div
-            className="username toleft"
-            onClick={toFlowCard}
-            //style={{ cursor: "pointer" }}
-          >
+          <div className="username toleft" onClick={toFlowCard}>
             {"@" + props.user.username}
           </div>
         </div>

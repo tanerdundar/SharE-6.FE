@@ -10,12 +10,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Home from "./Home";
 import axios from "axios";
-import { useEffect } from "react";
-import Logo from "./Logo";
 
 function Copyright(props) {
   return (
@@ -39,7 +36,6 @@ const defaultTheme = createTheme();
 export default function SignUp(props) {
   const [user, setUser] = useState(" ");
   const [situ, setSitu] = useState(true);
-  // const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [visible, setVisible] = useState(true);
@@ -76,7 +72,6 @@ export default function SignUp(props) {
   };
 
   const signChanger = () => {
-    // navigate("login");
     props.changer(props.isSigned);
   };
   const setLogged = () => {
@@ -93,8 +88,6 @@ export default function SignUp(props) {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
-      {/* <Logo /> */}
-
       {situ ? (
         <Container
           component="main"

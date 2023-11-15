@@ -3,7 +3,6 @@ import axios from "axios";
 import { Grid, Tooltip } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import { Fragment } from "react";
-import PropTypes from "prop-types";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -57,8 +56,7 @@ function NewMeow(props) {
         value={inputValue}
       />
       <div className="button">
-        {/* <div className="char">{charNumber}</div> */}
-        <CircularWithValueLabel   charNumber={charNumber} />
+        <CircularWithValueLabel charNumber={charNumber} />
         <Grid item>
           <Tooltip title="Send" placement="bottom">
             <button className="send" onClick={createMeow}>
@@ -84,8 +82,8 @@ function NewMeow(props) {
   );
 }
 function CircularProgressWithLabel(props) {
-
-  return ( <Box
+  return (
+    <Box
       sx={{
         position: "relative",
         display: "inline-flex",
@@ -95,7 +93,9 @@ function CircularProgressWithLabel(props) {
       }}
     >
       <CircularProgress
-        style={{ color: props.charNumber<0?"red": "rgba(255, 170, 12, 0.594)" }}
+        style={{
+          color: props.charNumber < 0 ? "red" : "rgba(255, 170, 12, 0.594)",
+        }}
         variant="determinate"
         {...props}
       />

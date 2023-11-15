@@ -42,7 +42,6 @@ export default function ProfileCard(props) {
       "http://138.68.66.115:8080/api/users/" + props.user.userId,
       input
     );
-    console.log(props.user.userId);
   };
   const setStatusToTrue = () => {
     setStatus(true);
@@ -91,7 +90,7 @@ export default function ProfileCard(props) {
                 </div>
               )}
             </div>
-            <Grid item style={{ marginLeft:"5%" }}>
+            <Grid item style={{ marginLeft: "5%" }}>
               <Tooltip title="Edit your name" placement="right-start">
                 <div className="edit">
                   <FaPen style={{ cursor: "pointer" }} onClick={editName} />

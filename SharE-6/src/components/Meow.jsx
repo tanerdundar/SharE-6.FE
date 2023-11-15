@@ -1,7 +1,5 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
-import SentimentVerySatisfiedTwoToneIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
 import axios from "axios";
 import { useState } from "react";
 import { FaPaw } from "react-icons/fa";

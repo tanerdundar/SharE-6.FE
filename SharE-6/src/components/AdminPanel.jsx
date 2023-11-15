@@ -13,10 +13,11 @@ function AdminPanel(props) {
   const [rePasswordContent, setRepasswordContent] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [visible, setVisible] = useState(false);
-  const [userFind,setUserFind] = useState(false)
+  const [userFind, setUserFind] = useState(false);
   const [open, setOpen] = useState(false);
-  const [editableUser,setEditableUser]=useState("")
-  const [updateUserName,setUpdateUserName]=useState("")
+  const [editableUser, setEditableUser] = useState("");
+  const [updateUserName, setUpdateUserName] = useState("");
+
   const handleClose = (event, reason) => {
     setOpen(false);
   };
@@ -71,21 +72,17 @@ function AdminPanel(props) {
       setVisible(true);
     }
   };
-  const findUser= async()=>{
+  const findUser = async () => {
     const response = await axios
-    .get(
-      "http://138.68.66.115:8080/api/users/findToUpdate/" +editableUser
-      
-    )
-    .then(async (e) => {
-      if(e.data.userRank=="STANDARD")
-      setUpdateUserName(e.data.username)
-      setUserFind(true)
-    })
-  }
-  const userNameSet=(e)=>{
-    setEditableUser(e.target.value)
-  }
+      .get("http://138.68.66.115:8080/api/users/findToUpdate/" + editableUser)
+      .then(async (e) => {
+        if (e.data.userRank == "STANDARD") setUpdateUserName(e.data.username);
+        setUserFind(true);
+      });
+  };
+  const userNameSet = (e) => {
+    setEditableUser(e.target.value);
+  };
   return (
     <div className="admin-panel">
       {addUser ? (
@@ -157,10 +154,6 @@ function AdminPanel(props) {
                 onChange={rePasswordSetter}
               />
             </Grid>
-            {/* <div
-              style={{ paddingLeft: "20px", fontSize: "2vh" }}
-              className="message"
-            ></div> */}
             <div style={{ height: "2vh", color: "red" }}>
               {visible ? errorMessage : ""}
             </div>
@@ -192,11 +185,26 @@ function AdminPanel(props) {
         </div>
       ) : editUser ? (
         <div className="edit-user-panel">
-          <input className="inputer" type="text" placeholder="find user to edit" onChange={userNameSet} />
-          {userFind?<div className="user-to-edit">
-            <div className="update-name">{updateUserName}</div>
-          </div>:<div className="user-to-edit"></div>}
-          <button className="get-button" onClick={findUser} style={{width:"40%", cursor:"pointer"}}>Find</button>
+          <input
+            className="inputer"
+            type="text"
+            placeholder="find user to edit"
+            onChange={userNameSet}
+          />
+          {userFind ? (
+            <div className="user-to-edit">
+              <div className="update-name">{updateUserName}</div>
+            </div>
+          ) : (
+            <div className="user-to-edit"></div>
+          )}
+          <button
+            className="get-button"
+            onClick={findUser}
+            style={{ width: "40%", cursor: "pointer" }}
+          >
+            Find
+          </button>
         </div>
       ) : (
         <div className="admin-panel-inside">

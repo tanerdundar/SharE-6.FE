@@ -3,7 +3,6 @@ function MiniProfile(props) {
     <div className="mini-profile">
       <div className="mini-profile-inside">
         <div className="mp-photo" style={{ backgroundColor: props.bg }}>
-          {/* {props.user.username[0]} */}
           {props.user.username[0].toUpperCase()}
         </div>
         <div className="mp-name">

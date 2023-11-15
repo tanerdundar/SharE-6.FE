@@ -2,21 +2,16 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Grid, Tooltip } from "@mui/material";
 
 export default function NavBar(props) {
-  // const navigate = useNavigate();
   const logChanger = () => {
-    //  navigate("login");
     props.changer(props.isLogged);
   };
   const goHome = () => {
-    // navigate("home");
     const response = axios
       .get("http://138.68.66.115:8080/api/meows/home/" + props.user.userId)
       .then((e) => {
@@ -24,7 +19,6 @@ export default function NavBar(props) {
       });
   };
   const goProfile = () => {
-    //  navigate(`${props.user.username}`);
     const result = axios
       .get("http://138.68.66.115:8080/api/meows/" + props.user.userId)
       .then((e) => {

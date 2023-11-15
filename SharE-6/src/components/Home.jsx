@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import FlowCard from "./FlowCard";
 import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
 import SearchCard from "./SearchCard";
 import NewMeow from "./NewMeow";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Zero from "./Zero";
 import AdminPanel from "./AdminPanel";
 import Logo from "./Logo";
@@ -13,8 +12,6 @@ import Logo from "./Logo";
 function Home(props) {
   const [isMeows, setIsMeows] = useState(true);
   const [sth, setSth] = useState(true);
-  // useNavigate("home");
-
   const [list, setList] = useState("");
   const [flowCardKey, setFlowCardKey] = useState(0);
   const [cUser, setCUser] = useState("");

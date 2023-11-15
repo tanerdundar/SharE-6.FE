@@ -11,10 +11,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Home from "./Home";
-import Logo from "./Logo";
 
 function Copyright(props) {
   return (
@@ -43,7 +41,6 @@ export default function SignIn(props) {
   const [user, setUser] = useState("");
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  // const navigate = useNavigate();
   const passwordChange = (e) => {
     setPassword(e.target.value);
     setWrong(false);
@@ -57,7 +54,6 @@ export default function SignIn(props) {
     const data = new FormData(event.currentTarget);
   };
   const signChanger = () => {
-    // navigate("signup");
     props.changer(props.isSigned);
   };
   const logIner = () => {
@@ -70,7 +66,6 @@ export default function SignIn(props) {
     const response = await axios
       .post("http://138.68.66.115:8080/api/users/login", user)
       .then((response) => {
-        //  navigate("home");
         findUser(response.data);
       })
       .catch((error) => {
@@ -93,12 +88,7 @@ export default function SignIn(props) {
   return (
     <>
       {isLogged ? (
-        <Home
-          func={setLogged}
-          user={user}
-          // fCount={followCount}
-          asd={setFollowCount}
-        />
+        <Home func={setLogged} user={user} asd={setFollowCount} />
       ) : (
         <ThemeProvider theme={defaultTheme}>
           <Container

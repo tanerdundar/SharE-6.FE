@@ -1,15 +1,10 @@
 import { Fragment, useState } from "react";
-import FollowButton from "./FollowButton";
 import MiniProfile from "./MiniProfile";
 import Numbers from "./Numbers";
 import axios from "axios";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 
 function FoundUser(props) {
-  const [followingId, setFollowingId] = useState(props.user.userId);
   const [follow, setFollow] = useState(props.isFollow ? true : false);
   const [meowNumber, setMeowNumber] = useState(props.user.numberOfMeows);
   const [followerNumber, setFollowerNumber] = useState(
@@ -55,8 +50,11 @@ function FoundUser(props) {
   return (
     <div className="search">
       <div className="exit">
- 
-        <div className="x" style={{width:"10%", cursor: "pointer"}} onClick={setter}>
+        <div
+          className="x"
+          style={{ width: "10%", cursor: "pointer" }}
+          onClick={setter}
+        >
           X
         </div>
       </div>
