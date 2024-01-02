@@ -29,6 +29,7 @@ export default function NavBar(props) {
     props.goAdminPanel();
   };
   const exiter = () => {
+    localStorage.clear();
     location.reload();
   };
   return (

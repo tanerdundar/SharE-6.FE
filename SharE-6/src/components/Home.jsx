@@ -19,6 +19,9 @@ function Home(props) {
   const [meowNumber, setMeowNumber] = useState(0);
   const [adminPanelOn, setAdminPanelOn] = useState(false);
 
+  localStorage.setItem("username", props.user.username);
+  console.log(localStorage.username);
+
   if (sth) {
     setSth(!sth);
     const response = axios
@@ -31,7 +34,6 @@ function Home(props) {
   const exiter = () => {
     props.func(false);
   };
-
   const setHomeList = (x, y) => {
     setList(x.data);
     setIsMeows(y);
@@ -59,7 +61,8 @@ function Home(props) {
   const addMeow = () => {
     setMeowNumber(meowNumber + 1);
   };
-
+  console.log(meowNumber, props.user, props.fCount);
+  console.log(props);
   return (
     <div className="home">
       <div className="space"></div>

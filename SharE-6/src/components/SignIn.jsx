@@ -88,7 +88,8 @@ export default function SignIn(props) {
   return (
     <>
       {isLogged ? (
-        <Home func={setLogged} user={user} asd={setFollowCount} />
+        // <Home func={setLogged} user={user} asd={setFollowCount} />
+        <Home user={user} />
       ) : (
         <ThemeProvider theme={defaultTheme}>
           <Container
